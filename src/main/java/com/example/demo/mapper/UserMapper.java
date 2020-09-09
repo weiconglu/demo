@@ -12,5 +12,8 @@ public interface UserMapper {
 
 	@Select(value = {"select * from user"})
 	List<User> getAllUser();
+	
+	@Select(value = {"select * from user where id=#{id}"})
+	User getUserById(Integer id);
 
 }
