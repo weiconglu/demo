@@ -24,7 +24,7 @@ public class PdfCreateUtil {
 		Document document = new Document(rect, 86, 86, 120, 120);
 
 		// 字体文件,预先将字体文件放入如下位置
-		String regularFont = "./vue/font/NotoSansJPRegular.otf";
+		String regularFont = "./vue/font/NotoSansJPRegular.ttf";
 		String boldFont = "./vue/font/NotoSansJPBold.ttf";
 //		String boldFont = "./vue/font/msyh.ttf";
 		// 创建基础字体
