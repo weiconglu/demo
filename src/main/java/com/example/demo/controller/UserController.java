@@ -22,10 +22,17 @@ public class UserController {
 	@GetMapping("/getAllUser")
 	public String showAllUser() {
 		List<User> userList = userService.getAllUser();
+		
 		if (null == userList) {
 			return "未找到任何用户";
 		}
-		return userList.toString();
+		
+		String line = "";
+		for (int i = 0; i < userList.size(); i++) {
+			User user = userList.get(i);
+			line += user.toString()+"<br>";
+		}
+		return line;
 	}
 	
 	// 获取指定id的用户
