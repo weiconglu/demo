@@ -33,7 +33,7 @@ public class UserController {
 	public String getUserById(@PathVariable Integer id) {
 		User user = userService.getUserById(id);
 		if (null == user) {
-			return "未找到任何用户";
+			return "没有id为"+id+"的用户";
 		}
 		return user.toString();
 	}
