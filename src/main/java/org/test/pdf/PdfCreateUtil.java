@@ -6,6 +6,7 @@ import java.net.MalformedURLException;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
@@ -52,7 +53,7 @@ public class PdfCreateUtil {
 		
 		String line = "入館票";
 		Paragraph paragraph = new Paragraph(line, bFont);
-//		paragraph.setAlignment(Element.ALIGN_CENTER);
+		paragraph.setAlignment(Element.ALIGN_CENTER);
 		document.add(paragraph);
 
 		document.close();
