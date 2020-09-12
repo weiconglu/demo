@@ -22,7 +22,7 @@ public class MailController {
 		
 		SimpleMailMessage msg = new SimpleMailMessage();
 		
-		msg.setFrom("receptionmail@163.com");
+		msg.setFrom("ireed@sina.com");
 		msg.setTo("lu_weicong@purvar.co.jp");
 		msg.setSubject("Test springboot mail sender");
 		msg.setText("这是一封测试邮件，请不要回复");
