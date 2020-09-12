@@ -1,22 +1,20 @@
 package org.test.mail;
 
-import java.io.FileNotFoundException;
-import java.util.Date;
+import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
-import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class SendMailTest {
+public class SendMailTest1 {
 
-	public static void main(String[] args) throws FileNotFoundException, MessagingException {
+	public static void main(String[] args) throws UnsupportedEncodingException, MessagingException {
 
 		// 获得邮件配置文件mail.properties
-		Properties mailConfigProperties = MailHelper.getMailConfigProperties();
+		Properties mailConfigProperties = MailHelper.getMailConfigProperties("mail.properties");
 
 		// 创建邮件会话
 		Session session = Session.getInstance(mailConfigProperties);
@@ -25,19 +23,18 @@ public class SendMailTest {
 
 		msg.setSubject("Test mail");
 		msg.setContent("这是一封测试邮件，请勿回复", "text/html;charset=utf-8");
-		msg.setSentDate(new Date());
+		
+//		msg.setSentDate(new Date());
 
-		msg.setFrom(new InternetAddress(mailConfigProperties.getProperty("mailFrom")));
-		msg.setRecipient(Message.RecipientType.TO, new InternetAddress(mailConfigProperties.getProperty("mailTo")));
+		msg.setFrom(new InternetAddress(mailConfigProperties.getProperty("mail.from")));
+		msg.setRecipient(Message.RecipientType.TO, new InternetAddress(mailConfigProperties.getProperty("mail.to"),"lu_weicong_to","utf-8"));
+//		msg.setRecipient(Message.RecipientType.CC, new InternetAddress(mailConfigProperties.getProperty("mail.cc"),"lu_weicong_cc","utf-8"));
+//		msg.setRecipient(Message.RecipientType.BCC, new InternetAddress(mailConfigProperties.getProperty("mail.bcc"),"lu_weicong_bcc","utf-8"));
 
-		msg.saveChanges();
+//		msg.saveChanges();
 
-		// 建立连接发送邮件
-		Transport transport = session.getTransport("smtp");
-		transport.connect(mailConfigProperties.getProperty("mail.host"), mailConfigProperties.getProperty("mailFrom"),
-				mailConfigProperties.getProperty("password"));
-		transport.sendMessage(msg, msg.getRecipients(Message.RecipientType.TO));
-		transport.close();
+		// 发送邮件
+		MailHelper.sendMail(session, mailConfigProperties, msg);
 
 	}
 
