@@ -17,11 +17,11 @@ import com.itextpdf.text.pdf.ColumnText;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfWriter;
 
-public class PdfCreateUtil {
+public class PdfCreateUtil4 {
 
 	public static void main(String[] args) throws DocumentException, MalformedURLException, IOException {
 
-		String path = "./vue/visitationpdf/test.pdf";
+		String path = "./vue/visitationpdf/test4.pdf";
 
 		// 定义纸张大小
 		Rectangle rect = new Rectangle(0, 0, 1644, 2000);
@@ -51,7 +51,7 @@ public class PdfCreateUtil {
 		document.add(qr);
 
 		// 入馆票背景
-		Rectangle rectangle = new Rectangle(672, (float) 1706.9, 1558, 1880);
+		Rectangle rectangle = new Rectangle(672, 1707, 1558, 1880);
 		rectangle.setBackgroundColor(new BaseColor(64, 64, 64));
 		document.add(rectangle);
 
@@ -73,7 +73,7 @@ public class PdfCreateUtil {
 		ColumnText.showTextAligned(canvas, Element.ALIGN_LEFT, enterTimeParagraph, 707, 1489, 0);
 
 		// 行先
-		String destination = "2F/4F/8F";
+		String destination = "行先：2F/4F/8F";
 		Paragraph destinationParagraph = new Paragraph(destination, rFont);
 		ColumnText.showTextAligned(canvas, Element.ALIGN_LEFT, destinationParagraph, 707, 1380, 0);
 
@@ -90,7 +90,7 @@ public class PdfCreateUtil {
 
 		// qrcode
 		String mapPath = "./vue/map/floor4.png";
-		Image map= Image.getInstance(mapPath);
+		Image map = Image.getInstance(mapPath);
 		map.scaleToFit(685, 561);
 		// 指定坐标
 		map.setAbsolutePosition(465, 182);
