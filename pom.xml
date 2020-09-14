@@ -57,16 +57,21 @@
 		</dependency>
 
 		<!-- springboot mail -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-mail</artifactId>
-		</dependency>
+		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-mail</artifactId> 
+			</dependency> -->
 
 		<!-- java mail -->
 		<dependency>
 			<groupId>com.sun.mail</groupId>
 			<artifactId>javax.mail</artifactId>
 			<version>1.6.2</version>
+		</dependency>
+		
+		<!-- Mime4j -->
+		<dependency>
+			<groupId>org.apache.james</groupId>
+			<artifactId>apache-mime4j-core</artifactId>
+			<version>0.8.3</version>
 		</dependency>
 
 		<dependency>
