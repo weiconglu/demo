@@ -11,7 +11,7 @@ public class SendMailTest2 {
 	public static void main(String[] args) throws UnsupportedEncodingException, MessagingException {
 
 		// 获得邮件配置文件mail.properties
-		Properties mailConfigProperties = MailHelper.getMailConfigProperties("mail.properties");
+		Properties mailConfigProperties = MailHelper.getMailConfigProperties("mail-reception.properties");
 
 		// 创建邮件会话
 		Session session = Session.getInstance(mailConfigProperties);

@@ -31,7 +31,7 @@ public class MailController {
 	@GetMapping("/toSecretary")
 	public String toSecretary() {
 		
-		Properties mailProperties = MailHelper.getMailConfigProperties("mail.properties");
+		Properties mailProperties = MailHelper.getMailConfigProperties("mail-reception.properties");
 		Session session = Session.getInstance(mailProperties);
 		
 		MimeMessage msg = new MimeMessage(session);
