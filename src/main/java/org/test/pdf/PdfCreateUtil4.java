@@ -21,7 +21,10 @@ public class PdfCreateUtil4 {
 
 	public static void main(String[] args) throws DocumentException, MalformedURLException, IOException {
 
-		String path = "./vue/visitationpdf/test4.pdf";
+		// 获取用户id
+		Integer visitorId = 1;
+		
+		String path = "./vue/visitationpdf/"+visitorId+".pdf";
 
 		// 定义纸张大小
 		Rectangle rect = new Rectangle(0, 0, 1644, 2000);
@@ -41,9 +44,6 @@ public class PdfCreateUtil4 {
 
 		document.open();
 
-		// 获取用户id
-		Integer visitorId = 1;
-
 		// qrcode
 		String qrPath = "./vue/qr/" + visitorId + ".png";
 		Image qr = Image.getInstance(qrPath);
@@ -60,7 +60,7 @@ public class PdfCreateUtil4 {
 		Paragraph paragraph = new Paragraph(line, bFont);
 		// 定义画布为当前pdf内容，栅格化文字并画在画布上
 		PdfContentByte canvas = pdfWriter.getDirectContent();
-		ColumnText.showTextAligned(canvas, Element.ALIGN_LEFT, paragraph, 707, 1735, 0);
+		ColumnText.showTextAligned(canvas, Element.ALIGN_LEFT, paragraph, 707, 1755, 0);
 
 		// 入館日期
 		String enterDate = new EnterDate().toString();
@@ -88,7 +88,7 @@ public class PdfCreateUtil4 {
 		ColumnText.showTextAligned(canvas, Element.ALIGN_LEFT, attention2Paragraph, 47, 1023, 0);
 		ColumnText.showTextAligned(canvas, Element.ALIGN_LEFT, attention3Paragraph, 132, 923, 0);
 
-		// qrcode
+		// add map
 		String mapPath = "./vue/map/floor4.png";
 		Image map = Image.getInstance(mapPath);
 		map.scaleToFit(685, 561);
