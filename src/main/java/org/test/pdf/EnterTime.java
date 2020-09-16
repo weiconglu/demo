@@ -1,13 +1,17 @@
 package org.test.pdf;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Calendar;
+import java.util.TimeZone;
 
 public class EnterTime {
 	
 	@Override
 	public String toString() {
-		return new SimpleDateFormat("HH時mm分").format(new Date());
+		TimeZone.setDefault(TimeZone.getTimeZone("Asia/Tokyo"));
+		Calendar calendar = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("HH時mm分");
+		return sdf.format(calendar.getTime());
 	}
-
+	
 }
