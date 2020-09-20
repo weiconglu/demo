@@ -20,6 +20,7 @@ public class SendMailTest2 {
 
 		MyAddress from = new MyAddress(mailConfigProperties.getProperty("mail.from"), "from新浪邮箱");
 		MyAddress to = new MyAddress(mailConfigProperties.getProperty("mail.to"), "to方正邮箱");
+		
 		msg.setFrom(from);
 		msg.setTo(to);
 		msg.setSubject("Test mail");

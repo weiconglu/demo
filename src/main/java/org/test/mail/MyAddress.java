@@ -14,9 +14,21 @@ public class MyAddress extends InternetAddress {
 	 * @param personal 邮件显示发/收件人名称，而不是邮件地址@前面的名称
 	 * @throws UnsupportedEncodingException
 	 */
-	public MyAddress(String address, String personal) throws UnsupportedEncodingException {
+	public MyAddress(String address, String personal) {
 		this.address = address;
-		setPersonal(personal, "utf-8");
+		try {
+			setPersonal(personal, "utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 
+	 * @param address
+	 */
+	public MyAddress(String address) {
+		this.address = address;
 	}
 
 

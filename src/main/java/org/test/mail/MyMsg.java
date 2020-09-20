@@ -13,8 +13,12 @@ public class MyMsg extends MimeMessage {
 	}
 
 	@Override
-	public void setFrom(Address address) throws MessagingException {
-		super.setFrom(address);
+	public void setFrom(Address address) {
+		try {
+			super.setFrom(address);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -22,8 +26,12 @@ public class MyMsg extends MimeMessage {
 	 * @param address
 	 * @throws MessagingException
 	 */
-	public void setTo(Address address) throws MessagingException {
-		super.setRecipient(Message.RecipientType.TO, address);
+	public void setTo(Address address){
+		try {
+			super.setRecipient(Message.RecipientType.TO, address);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -31,18 +39,56 @@ public class MyMsg extends MimeMessage {
 	 * @param addresses
 	 * @throws MessagingException
 	 */
-	public void setTo(Address[] addresses) throws MessagingException {
-		super.setRecipients(Message.RecipientType.TO, addresses);
+	public void setTo(Address[] addresses) {
+		try {
+			super.setRecipients(Message.RecipientType.TO, addresses);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 发给单一抄送
+	 * @param address
+	 * @throws MessagingException
+	 */
+	public void setCc(Address address){
+		try {
+			super.setRecipient(Message.RecipientType.CC, address);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 发送给多个抄送人
+	 * @param addresses
+	 * @throws MessagingException
+	 */
+	public void setCc(Address[] addresses) {
+		try {
+			super.setRecipients(Message.RecipientType.CC, addresses);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
-	public void setSubject(String subject) throws MessagingException {
-		super.setSubject(subject,"utf-8");
+	public void setSubject(String subject) {
+		try {
+			super.setSubject(subject,"utf-8");
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
-	public void setText(String text) throws MessagingException {
-		super.setText(text,"utf-8");
+	public void setText(String text) {
+		try {
+			super.setText(text,"utf-8");
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
