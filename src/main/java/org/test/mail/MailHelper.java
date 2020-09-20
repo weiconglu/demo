@@ -52,6 +52,8 @@ public class MailHelper {
 		for (int i = 0; i < addrStrings.length; i++) {
 			try {
 				addresses[i] = new InternetAddress(addrStrings[i]);
+				// 如果要在地址前加上收件人的名称，将上面代码注释掉，并将下面代码取消注释
+//				addresses[i] = new InternetAddress(addrStrings[i],addrStrings[i].split("@")[0]);
 			} catch (AddressException e) {
 				e.printStackTrace();
 			}
