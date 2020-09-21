@@ -13,18 +13,22 @@ import org.test.mail.mymail.MailHelper;
 public class GetMailTest {
 
 	public static void main(String[] args) {
-		
+
 		Properties mailProperties = MailHelper.getMailConfigProperties("mail.properties");
 		Session session = Session.getInstance(mailProperties);
 		try {
 			Store store = session.getStore("pop3");
-			store.connect(mailProperties.getProperty("mail.pop"), mailProperties.getProperty("mail.from"), mailProperties.getProperty("mail.password"));
-			
+			store.connect(mailProperties.getProperty("mail.pop"), mailProperties.getProperty("mail.from"),
+					mailProperties.getProperty("mail.password"));
+
 			Folder folder = store.getFolder("INBOX");
 			folder.open(Folder.READ_WRITE);
-			
+
 			Message[] msgs = folder.getMessages();
-			System.out.println("INBOX中共有"+msgs.length+ "封邮件");
+			System.out.println("INBOX中共有" + msgs.length + "封邮件");
+			
+			folder.close();
+			store.close();
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}

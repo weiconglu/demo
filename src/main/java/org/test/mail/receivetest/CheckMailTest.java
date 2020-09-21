@@ -21,7 +21,6 @@ public class CheckMailTest {
 		MailHelper.openFolderRO(folder);
 
 		Message[] msgs = MailHelper.getMessages(folder);
-
 		System.out.println("收件箱中共有" + msgs.length + "封邮件。");
 
 		for (int i = 0; i < msgs.length; i++) {
