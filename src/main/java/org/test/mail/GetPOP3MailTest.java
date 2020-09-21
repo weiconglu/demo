@@ -9,6 +9,8 @@ import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 
+import org.test.mail.mymail.MailHelper;
+
 import com.sun.mail.pop3.POP3Folder;
 import com.sun.mail.pop3.POP3Store;
 

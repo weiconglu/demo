@@ -5,7 +5,11 @@ import java.util.Properties;
 import javax.mail.Session;
 import javax.naming.NamingException;
 
-public class SendMailTest {
+import org.test.mail.mymail.MailHelper;
+import org.test.mail.mymail.MyAddress;
+import org.test.mail.mymail.MyMsg;
+
+public class SendTextMailTest {
 
 	public static void main(String[] args) throws NamingException {
 		

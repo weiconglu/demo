@@ -1,4 +1,4 @@
-package org.test.mail;
+package org.test.mail.mymail;
 
 import java.io.UnsupportedEncodingException;
 

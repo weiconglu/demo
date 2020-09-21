@@ -1,8 +1,9 @@
-package org.test.mail;
+package org.test.mail.mymail;
 
 import javax.mail.Address;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
 
@@ -86,6 +87,15 @@ public class MyMsg extends MimeMessage {
 	public void setText(String text) {
 		try {
 			super.setText(text,"utf-8");
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void setContent(Multipart mp) {
+		try {
+			super.setContent(mp);
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}

@@ -8,6 +8,8 @@ import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Store;
 
+import org.test.mail.mymail.MailHelper;
+
 public class GetMailTest {
 
 	public static void main(String[] args) {
