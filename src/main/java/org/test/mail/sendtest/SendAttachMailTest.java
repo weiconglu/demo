@@ -1,4 +1,4 @@
-package org.test.mail;
+package org.test.mail.sendtest;
 
 import java.io.File;
 import java.util.Properties;
