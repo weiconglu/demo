@@ -24,19 +24,21 @@ public class MyMsg extends MimeMessage {
 
 	/**
 	 * 发给单一收件人
+	 * 
 	 * @param address
 	 * @throws MessagingException
 	 */
-	public void setTo(Address address){
+	public void setTo(Address address) {
 		try {
 			super.setRecipient(Message.RecipientType.TO, address);
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * 发送给多个收件人
+	 * 
 	 * @param addresses
 	 * @throws MessagingException
 	 */
@@ -47,22 +49,24 @@ public class MyMsg extends MimeMessage {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * 发给单一抄送
+	 * 
 	 * @param address
 	 * @throws MessagingException
 	 */
-	public void setCc(Address address){
+	public void setCc(Address address) {
 		try {
 			super.setRecipient(Message.RecipientType.CC, address);
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * 发送给多个抄送人
+	 * 
 	 * @param addresses
 	 * @throws MessagingException
 	 */
@@ -77,7 +81,7 @@ public class MyMsg extends MimeMessage {
 	@Override
 	public void setSubject(String subject) {
 		try {
-			super.setSubject(subject,"utf-8");
+			super.setSubject(subject, "utf-8");
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
@@ -86,7 +90,7 @@ public class MyMsg extends MimeMessage {
 	@Override
 	public void setText(String text) {
 		try {
-			super.setText(text,"utf-8");
+			super.setText(text, "utf-8");
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
@@ -96,6 +100,18 @@ public class MyMsg extends MimeMessage {
 	public void setContent(Multipart mp) {
 		try {
 			super.setContent(mp);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 添加HTML内容
+	 * @param string
+	 */
+	public void setHTMLContent(String string) {
+		try {
+			super.setContent(string, "text/html;charset=utf-8");
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
