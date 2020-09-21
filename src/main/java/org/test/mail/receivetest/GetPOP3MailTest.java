@@ -1,4 +1,4 @@
-package org.test.mail;
+package org.test.mail.receivetest;
 
 import java.io.IOException;
 import java.util.Properties;

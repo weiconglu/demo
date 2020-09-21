@@ -5,10 +5,12 @@ import java.io.InputStream;
 import java.util.Properties;
 
 import javax.mail.Address;
+import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.NoSuchProviderException;
 import javax.mail.Session;
+import javax.mail.Store;
 import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
@@ -94,4 +96,107 @@ public class MailHelper {
 		}
 	}
 
+	/**
+	 * 获取POP3 Store，需要用到properties文件中的 mail.pop mail.from mail.password
+	 * @param mailProperties
+	 * @return
+	 */
+	public static Store getPOP3Store(Properties mailProperties) {
+		Session session = Session.getInstance(mailProperties);
+		Store store = null;
+		try {
+			store = session.getStore("pop3s");
+			store.connect(mailProperties.getProperty("mail.pop"), mailProperties.getProperty("mail.from"), mailProperties.getProperty("mail.password"));
+		} catch (NoSuchProviderException e) {
+			e.printStackTrace();
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		return store;
+	}
+	
+	/**
+	 * 获得INBOX文件夹
+	 * @param store
+	 * @return
+	 */
+	public static Folder getInboxFolder(Store store) {
+		Folder folder = null;
+		try {
+			folder = store.getFolder("INBOX");
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		return folder;
+	}
+	
+	/**
+	 * 以只读方式打开一个folder
+	 * @param folder
+	 */
+	public static void openFolderRO(Folder folder) {
+		try {
+			folder.open(Folder.READ_ONLY);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 以读写方式打开一个folder
+	 * @param folder
+	 */
+	public static void openFolderRW(Folder folder) {
+		try {
+			folder.open(Folder.READ_WRITE);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 获取folder中的邮件
+	 * @param folder
+	 * @return
+	 */
+	public static Message[] getMessages(Folder folder) {
+		Message[] msgs = null;
+		try {
+			msgs = folder.getMessages();
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		return msgs;
+	}
+	
+	/**
+	 * 关闭folder
+	 * @param folder
+	 * @param expungeFlag expunges all deleted messages if this flag is true
+	 */
+	public static void closeFolder(Folder folder,boolean expungeFlag) {
+		try {
+			folder.close(expungeFlag);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 关闭store
+	 * @param store
+	 */
+	public static void closeStore(Store store) {
+		try {
+			store.close();
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
+	
+	
 }
