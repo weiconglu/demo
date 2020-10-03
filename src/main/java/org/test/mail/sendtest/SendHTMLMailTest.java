@@ -9,12 +9,14 @@ import org.test.mail.mymail.MailHelper;
 import org.test.mail.mymail.MyAddress;
 import org.test.mail.mymail.MyMsg;
 
+import common.utils.PropertisUtil;
+
 public class SendHTMLMailTest {
 
 	public static void main(String[] args) throws NamingException {
 
 		// 获得mail配置文件
-		Properties mailProperties = MailHelper.getMailConfigProperties("mail.properties");
+		Properties mailProperties = PropertisUtil.getProperties("mail.properties");
 
 		// 初始化mail session
 		Session session = Session.getInstance(mailProperties);

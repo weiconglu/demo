@@ -17,11 +17,11 @@ public class DbUtils {
 	static {
 		user = "root";
 		password = "root";
-		driverClass = "org.mariadb.jdbc.Driver";
-//		driverClass = "com.mysql.jdbc.Driver";
+//		driverClass = "org.mariadb.jdbc.Driver";
+		driverClass = "com.mysql.cj.jdbc.Driver";
 //		driverClass = "oracle.jdbc.driver.OracleDriver";
 //		driverClass = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-		jdbcUrl = "jdbc:mysql://127.0.0.1:3306/javaweb";
+		jdbcUrl = "jdbc:mysql://127.0.0.1:3306/sb";
 //		jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
 //		jdbcUrl = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=test";
 	}

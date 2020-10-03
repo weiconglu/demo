@@ -1,7 +1,5 @@
 package org.test.mail.mymail;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Properties;
 
 import javax.mail.Address;
@@ -21,24 +19,6 @@ import javax.mail.internet.InternetAddress;
  *
  */
 public class MailHelper {
-
-	/**
-	 * 用于获取mail的配置文件
-	 * 
-	 * @param mailConfigProperties 放在resources目录下的mail配置文件（推荐此文件命名为mail.properties）
-	 * @return Properties properties
-	 */
-	public static Properties getMailConfigProperties(String mailConfigProperties) {
-
-		Properties properties = new Properties();
-		InputStream in = MailHelper.class.getClassLoader().getResourceAsStream(mailConfigProperties);
-		try {
-			properties.load(in);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return properties;
-	}
 
 	/**
 	 * 从一串字符串中获取email地址，email地址之间用"/"隔开， 注意email地址必须是正确的地址，且该字符串必须包含一个正确的email地址，
