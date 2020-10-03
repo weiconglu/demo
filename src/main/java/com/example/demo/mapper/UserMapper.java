@@ -18,7 +18,7 @@ public interface UserMapper {
 	User getUserById(Integer id);
 
 	@Insert(value = {
-			"insert into user(name,password,gender,birthday,phone,email) values(#{name},#{password},#{gender},#{birthday},#{phone},#{email})" })
-	void addUser(String name, String password, String gender, String birthday, String phone, String email);
+			"insert into user(name,password,gender,birthday) values(#{name},#{password},#{gender},#{birthday})" })
+	void addUser(String name, String password, String gender, String birthday);
 
 }

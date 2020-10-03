@@ -19,7 +19,7 @@ public class UserController {
 	private UserService userService;
 
 	// 获取所有用户
-	@GetMapping("/getAllUser")
+	@GetMapping("/getAll")
 	public String showAllUser() {
 		
 		List<User> userList = userService.getAllUser();
