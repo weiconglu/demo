@@ -175,8 +175,4 @@ public class TimeUtils {
 		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
 	}
 
-	public static void main(String[] args) {
-		System.out.println(TimeUtils.getBeautifulTimeString(TimeUtils.getLocalTime("GMT-12:00")));
-	}
-	
 }

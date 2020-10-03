@@ -21,6 +21,7 @@ public class UserController {
 	// 获取所有用户
 	@GetMapping("/getAllUser")
 	public String showAllUser() {
+		
 		List<User> userList = userService.getAllUser();
 		
 		if (null == userList) {
@@ -36,7 +37,7 @@ public class UserController {
 	}
 	
 	// 获取指定id的用户
-	@GetMapping("/getUserById/{id}")
+	@GetMapping("/getById/{id}")
 	public String getUserById(@PathVariable Integer id) {
 		User user = userService.getUserById(id);
 		if (null == user) {
