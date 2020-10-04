@@ -18,5 +18,12 @@ public interface UserService {
 	 * @return
 	 */
 	User getUserById(Integer id);
+	
+	/**
+	 * 
+	 * @param user
+	 * @return
+	 */
+	Integer add(User user);
 
 }

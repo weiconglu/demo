@@ -27,4 +27,9 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+	@Override
+	public Integer add(User user) {
+		return userMapper.add(user);
+	}
+
 }
