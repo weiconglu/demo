@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!-- namespace对应接口名 -->
+<mapper namespace="com.example.demo.mapper.UserMapper">
+	
+	<!-- 
+		一、根据执行的sql种类选择节点
+		二、id对应接口中抽象方法的名称
+		三、parameterType对应抽象方法的参数类型
+		四、sql语句中的参数用#{}框住User类中的属性名，结尾不需要使用分号表示结束
+	 -->
+	<insert id="add" parameterType="com.example.demo.model.User">
+	INSERT INTO user(name,gender,birthday) VALUES(#{name},#{gender},#{birthday})
+	</insert>
+
+</mapper>
