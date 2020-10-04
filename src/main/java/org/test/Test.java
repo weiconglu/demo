@@ -1,10 +1,13 @@
 package org.test;
 
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.mapper.MapperScannerConfigurer;
+
 public class Test {
 	
 	public static void main(String[] args) {
-		int[] intArray = new int[0];
-		System.out.println(intArray.length);
+		MapperScannerConfigurer msc;
+		SqlSessionFactoryBean ssfb;
 	}
 
 }
