@@ -24,7 +24,7 @@ public class UserController {
 	@GetMapping("/getAll")
 	public String showAllUser() {
 
-		List<User> userList = userService.getAllUser();
+		List<User> userList = userService.getAll();
 
 		if (null == userList) {
 			return "未找到任何用户";
@@ -33,7 +33,7 @@ public class UserController {
 		String line = "";
 		for (int i = 0; i < userList.size(); i++) {
 			User user = userList.get(i);
-			line += user.toString() + "<br>";
+			line += user.toString()+"\n";
 		}
 		return line;
 	}
@@ -41,7 +41,7 @@ public class UserController {
 	// 获取指定id的用户
 	@GetMapping("/getById/{id}")
 	public String getUserById(@PathVariable Integer id) {
-		User user = userService.getUserById(id);
+		User user = userService.getById(id);
 		if (null == user) {
 			return "没有id为" + id + "的用户";
 		}
@@ -51,7 +51,12 @@ public class UserController {
 	// 框架会自动检查请求参数是不是为null
 	@PostMapping("/add")
 	public String add(@RequestParam String name, @RequestParam String gender, @RequestParam String birthday) {
-		User user = new User(name, gender, birthday);
+		
+		User user = new User();
+		user.setName(name);
+		user.setGender(gender);
+		user.setBirthday(birthday);
+		
 		userService.add(user);
 		return "添加成功";
 	}

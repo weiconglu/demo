@@ -16,14 +16,14 @@ public class UserServiceImpl implements UserService {
 	private UserMapper userMapper;
 
 	@Override
-	public List<User> getAllUser() {
-		List<User> userList = userMapper.getAllUser();
+	public List<User> getAll() {
+		List<User> userList = userMapper.getAll();
 		return userList;
 	}
 
 	@Override
-	public User getUserById(Integer id) {
-		User user = userMapper.getUserById(id);
+	public User getById(Integer id) {
+		User user = userMapper.getById(id);
 		return user;
 	}
 

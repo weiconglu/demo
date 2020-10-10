@@ -7,15 +7,6 @@ public class User {
 	private String gender;
 	private String birthday;
 
-	public User(String name, String gender, String birthday) {
-		this.name = name;
-		this.gender = gender;
-		this.birthday = birthday;
-	}
-
-	public User() {
-	}
-
 	public Integer getId() {
 		return id;
 	}

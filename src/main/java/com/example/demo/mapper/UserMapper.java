@@ -10,10 +10,10 @@ import com.example.demo.model.User;
 public interface UserMapper {
 
 	@Select(value = { "select * from user" })
-	List<User> getAllUser();
+	List<User> getAll();
 
 	@Select(value = { "select * from user where id=#{id}" })
-	User getUserById(Integer id);
+	User getById(Integer id);
 
 	/*
 	 * 执行增/删/改操作，均返回Integer，表示受影响的行数

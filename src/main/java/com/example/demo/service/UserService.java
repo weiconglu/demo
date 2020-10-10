@@ -10,14 +10,14 @@ public interface UserService {
 	 * 获取所有用户
 	 * @return
 	 */
-	List<User> getAllUser();
+	List<User> getAll();
 	
 	/**
 	 * 根据用户的id获取用户
 	 * @param id
 	 * @return
 	 */
-	User getUserById(Integer id);
+	User getById(Integer id);
 	
 	/**
 	 * 
