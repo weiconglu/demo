@@ -25,7 +25,6 @@ public class SendTextMailTest {
 		MyMsg msg = new MyMsg(session);
 		msg.setFrom(new MyAddress(mailProperties.getProperty("mail.from"), "receptionmail"));
 		msg.setTo(new MyAddress(mailProperties.getProperty("mail.to"), "メールrecipient"));
-		msg.setCc(MailHelper.getAddresses(mailProperties.getProperty("mail.cc")));
 		msg.setSubject("测试邮件");
 		msg.setText("这是测试邮件的内容");
 		

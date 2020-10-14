@@ -25,7 +25,6 @@ public class SendHTMLMailTest {
 		MyMsg msg = new MyMsg(session);
 		msg.setFrom(new MyAddress(mailProperties.getProperty("mail.from")));
 		msg.setTo(new MyAddress(mailProperties.getProperty("mail.to")));
-		msg.setCc(MailHelper.getAddresses(mailProperties.getProperty("mail.cc")));
 		msg.setSubject("测试邮件");
 		msg.setHTMLContent("<h1>这是一个标题</h1>");
 

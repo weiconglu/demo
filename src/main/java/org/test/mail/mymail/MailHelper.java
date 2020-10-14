@@ -2,7 +2,6 @@ package org.test.mail.mymail;
 
 import java.util.Properties;
 
-import javax.mail.Address;
 import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -10,54 +9,29 @@ import javax.mail.NoSuchProviderException;
 import javax.mail.Session;
 import javax.mail.Store;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
 
 /**
- * 
+ * メール受送信ヘルパークラス
  * @author lu_weicong
  *
  */
 public class MailHelper {
 
 	/**
-	 * 从一串字符串中获取email地址，email地址之间用"/"隔开， 注意email地址必须是正确的地址，且该字符串必须包含一个正确的email地址，
-	 * 注意：此方法不做email地址的排错 例：abc@test.com abc@test.com/def@test.com
+	 * メールを送信する
+	 * 転入されたmailPropertiesファイルには３つの認証用セッティングが必要です： mail.smtp.host mail.user mail.password
 	 * 
-	 * @param addrString
-	 * @return Address[]
+	 * @param session
+	 * @param mailConfigProperties
+	 * @param msg
 	 */
-	public static Address[] getAddresses(String addrString) {
-		Address[] addresses = null;
-		String[] addrStrings = addrString.split("/");
-		addresses = new Address[addrStrings.length];
-		for (int i = 0; i < addrStrings.length; i++) {
-			try {
-				addresses[i] = new InternetAddress(addrStrings[i]);
-				// 如果要在地址前加上收件人的名称，将上面代码注释掉，并将下面代码取消注释
-//				addresses[i] = new InternetAddress(addrStrings[i],addrStrings[i].split("@")[0]);
-			} catch (AddressException e) {
-				e.printStackTrace();
-			}
-		}
-		return addresses;
-	}
-
-	/**
-	 * 用于发送mail 不知道为啥，密送不能用！
-	 * 
-	 * @param session              该邮件会话session
-	 * @param mailConfigProperties mail的配置文件，其中此方法用到mail.host，mail.from，mail.password
-	 * @param msg                  MimeMessage实例
-	 */
-	public static void sendMail(Session session, Properties mailConfigProperties, Message msg) {
+	public static void sendMail(Session session, Properties mailProperties, Message msg) {
 		Transport transport = null;
 		try {
 			transport = session.getTransport("smtp");
-			transport.connect(mailConfigProperties.getProperty("mail.host"),
-					mailConfigProperties.getProperty("mail.from"), mailConfigProperties.getProperty("mail.password"));
+			transport.connect(mailProperties.getProperty("mail.smtp.host"),
+					mailProperties.getProperty("mail.user"), mailProperties.getProperty("mail.password"));
 
-			// 若收件人/抄送/密送不为空，分别发送
 			if (msg.getRecipients(Message.RecipientType.TO) != null) {
 				transport.sendMessage(msg, msg.getRecipients(Message.RecipientType.TO));
 			}
@@ -77,7 +51,9 @@ public class MailHelper {
 	}
 
 	/**
-	 * 获取POP3 Store，需要用到properties文件中的 mail.pop mail.from mail.password
+	 * POP3 Storeを取得する
+	 * 転入されたmailPropertiesファイルには３つの認証用セッティングが必要です： mail.pop3.host mail.user mail.password
+	 * 
 	 * @param mailProperties
 	 * @return
 	 */
@@ -85,8 +61,9 @@ public class MailHelper {
 		Session session = Session.getInstance(mailProperties);
 		Store store = null;
 		try {
-			store = session.getStore("pop3s");
-			store.connect(mailProperties.getProperty("mail.pop"), mailProperties.getProperty("mail.from"), mailProperties.getProperty("mail.password"));
+			store = session.getStore("pop3");
+			store.connect(mailProperties.getProperty("mail.pop3.host"), mailProperties.getProperty("mail.user"),
+					mailProperties.getProperty("mail.password"));
 		} catch (NoSuchProviderException e) {
 			e.printStackTrace();
 		} catch (MessagingException e) {
@@ -96,7 +73,30 @@ public class MailHelper {
 	}
 	
 	/**
-	 * 获得INBOX文件夹
+	 * IMAP Storeを取得する
+	 * 転入されたmailPropertiesファイルには３つの認証用セッティングが必要です： mail.imap.host mail.user mail.password
+	 * 
+	 * @param mailProperties
+	 * @return
+	 */
+	public static Store getIMAPStore(Properties mailProperties) {
+		Session session = Session.getInstance(mailProperties);
+		Store store = null;
+		try {
+			store = session.getStore("imap");
+			store.connect(mailProperties.getProperty("mail.imap.host"), mailProperties.getProperty("mail.user"),
+					mailProperties.getProperty("mail.password"));
+		} catch (NoSuchProviderException e) {
+			e.printStackTrace();
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		return store;
+	}
+
+	/**
+	 * INBOXを取得する
+	 * 
 	 * @param store
 	 * @return
 	 */
@@ -109,9 +109,10 @@ public class MailHelper {
 		}
 		return folder;
 	}
-	
+
 	/**
-	 * 以只读方式打开一个folder
+	 * RO権限でfolderを開く
+	 * 
 	 * @param folder
 	 */
 	public static void openFolderRO(Folder folder) {
@@ -121,9 +122,10 @@ public class MailHelper {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
-	 * 以读写方式打开一个folder
+	 * RW権限でfolderを開く
+	 * 
 	 * @param folder
 	 */
 	public static void openFolderRW(Folder folder) {
@@ -135,7 +137,8 @@ public class MailHelper {
 	}
 
 	/**
-	 * 获取folder中的邮件
+	 * folderにあるメールを取得する
+	 * 
 	 * @param folder
 	 * @return
 	 */
@@ -148,22 +151,24 @@ public class MailHelper {
 		}
 		return msgs;
 	}
-	
+
 	/**
-	 * 关闭folder
+	 * folderを閉じる
+	 * 
 	 * @param folder
 	 * @param expungeFlag expunges all deleted messages if this flag is true
 	 */
-	public static void closeFolder(Folder folder,boolean expungeFlag) {
+	public static void closeFolder(Folder folder, boolean expungeFlag) {
 		try {
 			folder.close(expungeFlag);
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
-	 * 关闭store
+	 * storeを閉じる
+	 * 
 	 * @param store
 	 */
 	public static void closeStore(Store store) {
@@ -173,10 +178,5 @@ public class MailHelper {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
-	
-	
-	
+
 }

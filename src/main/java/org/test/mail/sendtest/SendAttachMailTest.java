@@ -29,7 +29,6 @@ public class SendAttachMailTest {
 
 		msg.setFrom(new MyAddress(mailProperties.getProperty("mail.from")));
 		msg.setTo(new MyAddress(mailProperties.getProperty("mail.to")));
-		msg.setCc(MailHelper.getAddresses(mailProperties.getProperty("mail.cc")));
 		
 		msg.setSubject("这是一封有附件的メール");
 		
