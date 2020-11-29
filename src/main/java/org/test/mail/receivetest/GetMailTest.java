@@ -8,13 +8,13 @@ import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Store;
 
-import common.utils.PropertisUtil;
+import common.utils.ResourceUtils;
 
 public class GetMailTest {
 
 	public static void main(String[] args) {
 
-		Properties mailProperties = PropertisUtil.getProperties("mail.properties");
+		Properties mailProperties = ResourceUtils.getProperties("mail.properties");
 		Session session = Session.getInstance(mailProperties);
 		try {
 			Store store = session.getStore("pop3");

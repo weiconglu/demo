@@ -15,14 +15,14 @@ import org.test.mail.mymail.MyBodyPart;
 import org.test.mail.mymail.MyMsg;
 import org.test.mail.mymail.MyMultiPart;
 
-import common.utils.PropertisUtil;
+import common.utils.ResourceUtils;
 
 public class SendHTMLWithPicMailTest {
 
 	public static void main(String[] args) throws NamingException, MessagingException {
 
 		// 获得mail配置文件
-		Properties mailProperties = PropertisUtil.getProperties("mail.properties");
+		Properties mailProperties = ResourceUtils.getProperties("mail.properties");
 
 		// 初始化mail session
 		Session session = Session.getInstance(mailProperties);

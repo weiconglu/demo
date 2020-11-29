@@ -15,13 +15,13 @@ import org.test.mail.mymail.MyBodyPart;
 import org.test.mail.mymail.MyMsg;
 import org.test.mail.mymail.MyMultiPart;
 
-import common.utils.PropertisUtil;
+import common.utils.ResourceUtils;
 
 public class SendAttachMailTest {
 
 	public static void main(String[] args) throws NamingException {
 
-		Properties mailProperties = PropertisUtil.getProperties("mail.properties");
+		Properties mailProperties = ResourceUtils.getProperties("mail.properties");
 
 		Session session = Session.getInstance(mailProperties);
 

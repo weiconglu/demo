@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.test.mail.mymail.MailHelper;
 
-import common.utils.PropertisUtil;
+import common.utils.ResourceUtils;
 
 /**
  * 
@@ -33,7 +33,7 @@ public class MailController {
 	@GetMapping("/toSecretary")
 	public String toSecretary() {
 		
-		Properties mailProperties = PropertisUtil.getProperties("mail.properties");
+		Properties mailProperties = ResourceUtils.getProperties("mail.properties");
 		Session session = Session.getInstance(mailProperties);
 		
 		MimeMessage msg = new MimeMessage(session);

@@ -10,13 +10,13 @@ import javax.mail.Store;
 
 import org.test.mail.mymail.MailHelper;
 
-import common.utils.PropertisUtil;
+import common.utils.ResourceUtils;
 
 public class CheckMailTest {
 
 	public static void main(String[] args) {
 
-		Properties mailProperties = PropertisUtil.getProperties("mail.properties");
+		Properties mailProperties = ResourceUtils.getProperties("mail.properties");
 		Store store = MailHelper.getPOP3Store(mailProperties);
 
 		Folder folder = MailHelper.getInboxFolder(store);
