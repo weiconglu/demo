@@ -10,7 +10,7 @@ public class EnterDate {
 	public String toString() {
 		TimeZone.setDefault(TimeZone.getTimeZone("Asia/Tokyo"));
 		Calendar calendar = Calendar.getInstance();
-		String[] days = {"日","月","火","水","木","金","土"};
+		String[] days = {"","日","月","火","水","木","金","土"};
 		int index = calendar.get(Calendar.DAY_OF_WEEK);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
 		String str = sdf.format(calendar.getTime())+"（"+days[index]+"）";
