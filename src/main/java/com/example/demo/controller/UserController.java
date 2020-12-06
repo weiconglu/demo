@@ -36,9 +36,17 @@ public class UserController {
 		String line = "";
 		for (int i = 0; i < userList.size(); i++) {
 			User user = userList.get(i);
-			line += user.toString()+"\n";
+			line += user.toString() + "\n";
 		}
 		return line;
+	}
+
+	// 获取指定id的用户
+	@GetMapping("/get100")
+	public String get100() {
+		List<User> users = userService.get100();
+		System.out.println(users);
+		return "请查看控制台输出";
 	}
 
 	// 获取指定id的用户
@@ -54,24 +62,24 @@ public class UserController {
 	// 框架会自动检查请求参数是不是为null
 	@PostMapping("/add")
 	public String add(@RequestParam String name, @RequestParam String gender, @RequestParam String birthday) {
-		
+
 		User user = new User();
 		user.setName(name);
 		user.setGender(gender);
 		user.setBirthday(birthday);
-		
+
 		userService.add(user);
 		return "添加成功";
 	}
-	
+
 	@PostMapping("/getFaces")
 	public String getFaces(@RequestBody FaceInfo faceInfo) {
-		
+
 		List<Map<String, Object>> faces = faceInfo.getFaces();
 		Map<String, Object> map = faces.get(0);
-		
+
 		System.out.println(map.get("personId"));
-		
+
 		return "收到";
 	}
 

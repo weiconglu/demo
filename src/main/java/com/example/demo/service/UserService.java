@@ -26,4 +26,6 @@ public interface UserService {
 	 */
 	Integer add(User user);
 
+	List<User> get100();
+
 }

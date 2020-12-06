@@ -32,4 +32,9 @@ public class UserServiceImpl implements UserService {
 		return userMapper.add(user);
 	}
 
+	@Override
+	public List<User> get100() {
+		return userMapper.get100();
+	}
+
 }
