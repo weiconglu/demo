@@ -33,7 +33,7 @@ public class MailController {
 	@GetMapping("/toSecretary")
 	public String toSecretary() {
 		
-		Properties mailProperties = ResourceUtils.getProperties("mail.properties");
+		Properties mailProperties = ResourceUtils.getProperties("application-home.properties");
 		Session session = Session.getInstance(mailProperties);
 		
 		MimeMessage msg = new MimeMessage(session);
