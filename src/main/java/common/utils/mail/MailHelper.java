@@ -1,5 +1,7 @@
-package org.test.mail.mymail;
+package common.utils.mail;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.mail.Folder;
@@ -9,6 +11,8 @@ import javax.mail.NoSuchProviderException;
 import javax.mail.Session;
 import javax.mail.Store;
 import javax.mail.Transport;
+
+import com.sun.mail.imap.IMAPStore;
 
 /**
  * メール受送信ヘルパークラス
@@ -27,26 +31,35 @@ public class MailHelper {
 	 */
 	public static void sendMail(Session session, Properties mailProperties, Message msg) {
 		Transport transport = null;
-		try {
-			transport = session.getTransport("smtp");
-			transport.connect(mailProperties.getProperty("mail.smtp.host"),
-					mailProperties.getProperty("mail.user"), mailProperties.getProperty("mail.password"));
+		
+		int times = 0; // try times
+		boolean flag = false; // send mail ok flag
+		
+		while (flag==false && times < 3) {
+			
+			try {
+				transport = session.getTransport("smtp");
+				transport.connect(mailProperties.getProperty("mail.smtp.host"), mailProperties.getProperty("mail.user"),
+						mailProperties.getProperty("mail.password"));
 
-			if (msg.getRecipients(Message.RecipientType.TO) != null) {
-				transport.sendMessage(msg, msg.getRecipients(Message.RecipientType.TO));
-			}
-			if (msg.getRecipients(Message.RecipientType.CC) != null) {
-				transport.sendMessage(msg, msg.getRecipients(Message.RecipientType.CC));
-			}
-			if (msg.getRecipients(Message.RecipientType.BCC) != null) {
-				transport.sendMessage(msg, msg.getRecipients(Message.RecipientType.BCC));
-			}
+				if (msg.getRecipients(Message.RecipientType.TO) != null) {
+					transport.sendMessage(msg, msg.getRecipients(Message.RecipientType.TO));
+				}
+				if (msg.getRecipients(Message.RecipientType.CC) != null) {
+					transport.sendMessage(msg, msg.getRecipients(Message.RecipientType.CC));
+				}
+				if (msg.getRecipients(Message.RecipientType.BCC) != null) {
+					transport.sendMessage(msg, msg.getRecipients(Message.RecipientType.BCC));
+				}
 
-			transport.close();
-		} catch (NoSuchProviderException e) {
-			e.printStackTrace();
-		} catch (MessagingException e) {
-			e.printStackTrace();
+				transport.close();
+				flag = true;
+				
+			} catch (MessagingException e) {
+				e.printStackTrace();
+				times++;
+				System.out.println("第" + times + "回トライ：通知メールを送信します");
+			}
 		}
 	}
 
@@ -79,13 +92,23 @@ public class MailHelper {
 	 * @param mailProperties
 	 * @return
 	 */
-	public static Store getIMAPStore(Properties mailProperties) {
+	public static IMAPStore getIMAPStore(Properties mailProperties) {
 		Session session = Session.getInstance(mailProperties);
-		Store store = null;
+		IMAPStore store = null;
 		try {
-			store = session.getStore("imap");
+			store = (IMAPStore) session.getStore("imap");
 			store.connect(mailProperties.getProperty("mail.imap.host"), mailProperties.getProperty("mail.user"),
 					mailProperties.getProperty("mail.password"));
+			
+			//------------------------------imap 認証-------------------------------
+			Map<String, String> clientParams = new HashMap<String, String>();
+			clientParams.put("name","myname");      
+			clientParams.put("version","1.0.0");      
+			clientParams.put("vendor","myclient");      
+			clientParams.put("support-email","testmail@test.com");  
+			store.id(clientParams);
+			//------------------------------------------------------------------------
+			
 		} catch (NoSuchProviderException e) {
 			e.printStackTrace();
 		} catch (MessagingException e) {

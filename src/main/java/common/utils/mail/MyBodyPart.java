@@ -1,9 +1,13 @@
-package org.test.mail.mymail;
+package common.utils.mail;
 
 import javax.activation.DataHandler;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeBodyPart;
 
+/**
+ * 
+ * @author lu_weicong
+ */
 public class MyBodyPart extends MimeBodyPart {
 
 	@Override

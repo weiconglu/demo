@@ -1,4 +1,4 @@
-package org.test.mail.mymail;
+package common.utils.mail;
 
 import javax.mail.Address;
 import javax.mail.Message;
@@ -7,6 +7,10 @@ import javax.mail.Multipart;
 import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
 
+/**
+ * 
+ * @author lu_weicong
+ */
 public class MyMsg extends MimeMessage {
 
 	public MyMsg(Session session) {
@@ -15,6 +19,18 @@ public class MyMsg extends MimeMessage {
 
 	@Override
 	public void setFrom(Address address) {
+		try {
+			super.setFrom(address);
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 重写父类方法
+	 */
+	@Override
+	public void setFrom(String address) {
 		try {
 			super.setFrom(address);
 		} catch (MessagingException e) {

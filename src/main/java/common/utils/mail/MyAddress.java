@@ -1,9 +1,13 @@
-package org.test.mail.mymail;
+package common.utils.mail;
 
 import java.io.UnsupportedEncodingException;
 
 import javax.mail.internet.InternetAddress;
 
+/**
+ * 
+ * @author lu_weicong
+ */
 public class MyAddress extends InternetAddress {
 	
 	private static final long serialVersionUID = 1L;
