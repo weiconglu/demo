@@ -67,8 +67,9 @@ public class UserController {
 		user.setName(name);
 		user.setGender(gender);
 		user.setBirthday(birthday);
-
+		System.out.println("插入数据库前的user--->"+user.toString());
 		userService.add(user);
+		System.out.println("插入数据库后的user--->"+user.toString());
 		return "添加成功";
 	}
 
@@ -81,6 +82,12 @@ public class UserController {
 		System.out.println(map.get("personId"));
 
 		return "收到";
+	}
+	
+	@GetMapping("/setToManById/{id}")
+	public String setToManById(@PathVariable Integer id) {
+		Integer rows = userService.setToManById(id);
+		return "更改了"+rows+"行";
 	}
 
 }

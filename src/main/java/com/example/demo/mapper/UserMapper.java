@@ -24,5 +24,12 @@ public interface UserMapper {
 	 * 执行增/删/改操作，均返回Integer，表示受影响的行数
 	 */
 	Integer add(User user);
+	
+	/**
+	 * 根据id把这个用户的性别设置为男
+	 * @param id
+	 * @return
+	 */
+	Integer setToManById(Integer id);
 
 }
