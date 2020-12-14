@@ -27,5 +27,12 @@ public interface UserService {
 	Integer add(User user);
 
 	List<User> get100();
+	
+	/**
+	 * 根据id把这个用户的性别设置为男
+	 * @param id
+	 * @return
+	 */
+	Integer setToManById(Integer id);
 
 }

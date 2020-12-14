@@ -37,4 +37,9 @@ public class UserServiceImpl implements UserService {
 		return userMapper.get100();
 	}
 
+	@Override
+	public Integer setToManById(Integer id) {
+		return userMapper.setToManById(id);
+	}
+
 }
