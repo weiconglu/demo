@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import common.utils.ResourceUtils;
-import common.utils.mail.MailHelper;
+import com.example.demo.common.utils.ResourceUtils;
+import com.example.demo.common.utils.mail.MailHelper;
 
 /**
  * 

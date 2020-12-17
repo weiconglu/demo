@@ -1,4 +1,4 @@
-package common.utils.mail;
+package com.example.demo.common.utils.mail;
 
 import java.io.UnsupportedEncodingException;
 

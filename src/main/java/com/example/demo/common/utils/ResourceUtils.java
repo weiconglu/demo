@@ -1,4 +1,4 @@
-package common.utils;
+package com.example.demo.common.utils;
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;

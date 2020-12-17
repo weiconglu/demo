@@ -1,4 +1,4 @@
-package common.utils.mail;
+package com.example.demo.common.utils.mail;
 
 import javax.mail.Address;
 import javax.mail.Message;

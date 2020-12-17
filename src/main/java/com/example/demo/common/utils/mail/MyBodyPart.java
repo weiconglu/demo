@@ -1,4 +1,4 @@
-package common.utils.mail;
+package com.example.demo.common.utils.mail;
 
 import javax.activation.DataHandler;
 import javax.mail.MessagingException;

@@ -1,4 +1,4 @@
-package common.utils;
+package com.example.demo.common.utils;
 
 public class StringUtils {
 	
