@@ -175,4 +175,22 @@ public class TimeUtils {
 		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
 	}
 
+	/**
+	 * 将形如“2020-12-09T03:46:15.000Z”的字符串转化为"yyyy-MM-dd HH:mm:ss"格式的字符串
+	 * @param dateStr
+	 * @return
+	 */
+	public static String getBeautifulTimeString(String dateStr) {
+
+		if (null == dateStr) {
+			return null;
+		}
+
+		String regex = "\\d{4}-\\d{1,2}-\\d{1,2}T\\d{1,2}:\\d{1,2}:\\d{1,2}.000Z";
+		if (dateStr.matches(regex)) {
+			return dateStr.substring(0, dateStr.lastIndexOf(".")).replace("T", " ");
+		}
+		return null;
+	}
+
 }

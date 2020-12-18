@@ -53,7 +53,7 @@
 			<version>2.0.21</version>
 		</dependency>
 
-	<!-- JAI Image I/O -->
+		<!-- JAI Image I/O -->
 		<dependency>
 			<groupId>org.apache.pdfbox</groupId>
 			<artifactId>jbig2-imageio</artifactId>
@@ -98,6 +98,13 @@
 			<groupId>com.google.zxing</groupId>
 			<artifactId>core</artifactId>
 			<version>3.4.1</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-csv -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-csv</artifactId>
+			<version>1.8</version>
 		</dependency>
 
 		<dependency>
