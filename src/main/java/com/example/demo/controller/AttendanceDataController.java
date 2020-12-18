@@ -30,10 +30,10 @@ public class AttendanceDataController {
 	@GetMapping("/insert")
 	public String insert() {
 
+		AttendanceData attendanceData = new AttendanceData();
 		try (Reader in = new FileReader("data.csv")) {
 			Iterable<CSVRecord> records = CSVFormat.RFC4180.withHeader(Headers.class).parse(in);
 			for (CSVRecord record : records) {
-				AttendanceData attendanceData = new AttendanceData();
 				attendanceData.setLoginName(record.get(Headers.loginName));
 				attendanceData.setFullName(record.get(Headers.fullName));
 				attendanceData.setStatus(record.get(Headers.status));
@@ -50,6 +50,8 @@ public class AttendanceDataController {
 		} catch (IOException e) {
 			e.printStackTrace();
 			return "文件读取错误";
+		} finally {
+			attendanceData = null;
 		}
 
 		return "数据成功导入到数据库";
