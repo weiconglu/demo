@@ -4,9 +4,17 @@
 <!-- namespace对应接口名 -->
 <mapper namespace="com.example.demo.mapper.UserMapper">
 
-	<!-- 一、根据执行的sql种类选择节点 二、id对应接口中抽象方法的名称 三、parameterType对应抽象方法的参数类型 四、sql语句中的参数用#{}框住User类中的属性名，结尾不需要使用分号表示结束 -->
-	<!-- useGeneratedKeys 表示获取自增长的键；keyProperty 表示键的属性名，即对应类中的属性名（即id是User类中的id，而不是user表中的id） -->
-	<!-- 插入操作的返回值依然是数据库的表中受影响的行数，但是执行插入操作的对象中就会包含自动生成的id值 -->
+	<!-- 
+		一、根据执行的sql种类选择节点
+		二、id对应接口中抽象方法的名称
+		三、parameterType对应抽象方法的参数类型
+		四、sql语句中的参数用#{}框住User类中的属性名，结尾不需要使用分号表示结束
+		-->
+	<!-- 
+		useGeneratedKeys 表示获取自增长的键；
+		keyProperty 表示键的属性名，即对应类中的属性名（即id是User类中的id，而不是user表中的id）
+		插入操作的返回值依然是数据库的表中受影响的行数，但是执行插入操作的对象中就会包含自动生成的id值
+		-->
 	<insert id="add" parameterType="com.example.demo.model.User"
 		useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO user(name,gender,birthday) VALUES(#{name},#{gender},#{birthday})
