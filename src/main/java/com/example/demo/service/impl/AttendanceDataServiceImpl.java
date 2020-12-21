@@ -14,8 +14,8 @@ public class AttendanceDataServiceImpl implements AttendanceDataService {
 	private AttendanceDataMapper attendanceDataMapper;
 
 	@Override
-	public Integer insert(AttendanceData attendanceData) {
-		return attendanceDataMapper.insert(attendanceData);
+	public Integer add(AttendanceData attendanceData) {
+		return attendanceDataMapper.add(attendanceData);
 	}
 
 }

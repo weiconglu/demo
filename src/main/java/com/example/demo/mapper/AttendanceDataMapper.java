@@ -4,6 +4,6 @@ import com.example.demo.model.AttendanceData;
 
 public interface AttendanceDataMapper {
 
-	Integer insert(AttendanceData attendanceData);
+	Integer add(AttendanceData attendanceData);
 
 }

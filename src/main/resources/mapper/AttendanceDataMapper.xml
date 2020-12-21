@@ -3,7 +3,7 @@
 
 <mapper namespace="com.example.demo.mapper.AttendanceDataMapper">
 
-	<insert id="insert"
+	<insert id="add"
 		parameterType="com.example.demo.model.AttendanceData"
 		useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO

@@ -9,6 +9,6 @@ public interface AttendanceDataService {
 	 * @param attendanceData
 	 * @return
 	 */
-	Integer insert(AttendanceData attendanceData);
+	Integer add(AttendanceData attendanceData);
 
 }
