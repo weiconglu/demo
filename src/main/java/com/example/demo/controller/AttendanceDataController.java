@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.common.utils.TimeUtils;
 import com.example.demo.model.AttendanceData;
 import com.example.demo.service.AttendanceDataService;
+import com.example.demo.utils.TimeUtils;
 
 @RestController
 @RequestMapping("attendanceData")
