@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.text.ParseException;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
@@ -27,7 +28,7 @@ public class AttendanceDataController {
 	@Autowired
 	private AttendanceDataService attendanceDataService;
 
-	@GetMapping("/insert")
+	@GetMapping("/add")
 	public String insert() {
 
 		AttendanceData attendanceData = new AttendanceData();
@@ -37,12 +38,12 @@ public class AttendanceDataController {
 				attendanceData.setLoginName(record.get(Headers.loginName));
 				attendanceData.setFullName(record.get(Headers.fullName));
 				attendanceData.setStatus(record.get(Headers.status));
-				attendanceData.setStartAt(TimeUtils.getBeautifulTimeString(record.get(Headers.startAt)));
-				attendanceData.setEndAt(TimeUtils.getBeautifulTimeString(record.get(Headers.endAt)));
+				attendanceData.setStartAt(TimeUtils.getBeautifulString(TimeUtils.getLocalTime(TimeUtils.getDate(record.get(Headers.startAt), true), "GMT+09:00")));
+				attendanceData.setEndAt(TimeUtils.getBeautifulString(TimeUtils.getLocalTime(TimeUtils.getDate(record.get(Headers.endAt), true), "GMT+09:00")));
 				attendanceData.setDeskName(record.get(Headers.deskName));
 				attendanceData.setSiteName(record.get(Headers.siteName));
 				attendanceData.setFloorName(record.get(Headers.floorName));
-				attendanceDataService.insert(attendanceData);
+				attendanceDataService.add(attendanceData);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -50,6 +51,8 @@ public class AttendanceDataController {
 		} catch (IOException e) {
 			e.printStackTrace();
 			return "文件读取错误";
+		} catch (ParseException e) {
+			e.printStackTrace();
 		} finally {
 			attendanceData = null;
 		}
