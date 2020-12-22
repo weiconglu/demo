@@ -4,325 +4,89 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 public class TimeUtils {
 
-	/**
-	 * 传入表示GMT时区的字符串，得到这个时区的时间
-	 * 
-	 * @param GMT+8:00或GMT+08:00 GMT+9:00或GMT+09:00 如果输入的字符串格式不对不能识别，则返回UTC时间
-	 * @return
-	 */
-	public static Date getLocalTime(String GMTString) {
+	public static SimpleDateFormat BEAUTIFUL_SDF = null;
 
-		Calendar cal = Calendar.getInstance(); // 获得当前默认时间
-
-		int offset = 0; // 时间偏移量
-		switch (GMTString) {
-		case "GMT-12:00": // 西十二区(东西12区是一个区)
-			offset = -43200000;
-			break;
-		case "GMT-11:00":
-			offset = -39600000;
-			break;
-		case "GMT-10:00":
-			offset = -36000000;
-			break;
-		case "GMT-09:00":
-			offset = 32400000;
-			break;
-		case "GMT-9:00":
-			offset = 32400000;
-			break;
-		case "GMT-08:00":
-			offset = -28800000;
-			break;
-		case "GMT-8:00":
-			offset = -28800000;
-			break;
-		case "GMT-07:00":
-			offset = -25200000;
-			break;
-		case "GMT-7:00":
-			offset = -25200000;
-			break;
-		case "GMT-06:00":
-			offset = -21600000;
-			break;
-		case "GMT-6:00":
-			offset = -21600000;
-			break;
-		case "GMT-05:00":
-			offset = -18000000;
-			break;
-		case "GMT-5:00":
-			offset = -18000000;
-			break;
-		case "GMT-04:00":
-			offset = -14400000;
-			break;
-		case "GMT-4:00":
-			offset = -14400000;
-			break;
-		case "GMT-03:00":
-			offset = -10800000;
-			break;
-		case "GMT-3:00":
-			offset = -10800000;
-			break;
-		case "GMT-02:00":
-			offset = -7200000;
-			break;
-		case "GMT-2:00":
-			offset = -7200000;
-			break;
-		case "GMT-01:00":
-			offset = -3600000;
-			break;
-		case "GMT-1:00":
-			offset = -3600000;
-			break;
-		case "GMT-00:00":
-			break;
-		case "GMT-0:00":
-			break;
-		case "GMT+00:00":
-			break;
-		case "GMT+0:00":
-			break;
-		case "GMT+01:00":
-			offset = 3600000;
-			break;
-		case "GMT+1:00":
-			offset = 3600000;
-			break;
-		case "GMT+02:00":
-			offset = 7200000;
-			break;
-		case "GMT+2:00":
-			offset = 7200000;
-			break;
-		case "GMT+03:00":
-			offset = 10800000;
-			break;
-		case "GMT+3:00":
-			offset = 10800000;
-			break;
-		case "GMT+04:00":
-			offset = 14400000;
-			break;
-		case "GMT+4:00":
-			offset = 14400000;
-			break;
-		case "GMT+05:00":
-			offset = 18000000;
-			break;
-		case "GMT+5:00":
-			offset = 18000000;
-			break;
-		case "GMT+06:00":
-			offset = 21600000;
-			break;
-		case "GMT+6:00":
-			offset = 21600000;
-			break;
-		case "GMT+07:00":
-			offset = 25200000;
-			break;
-		case "GMT+7:00":
-			offset = 25200000;
-			break;
-		case "GMT+08:00":
-			offset = 28800000;
-			break;
-		case "GMT+8:00":
-			offset = 28800000;
-			break;
-		case "GMT+09:00":
-			offset = 32400000;
-			break;
-		case "GMT+9:00":
-			offset = 32400000;
-			break;
-		case "GMT+10:00":
-			offset = 36000000;
-			break;
-		case "GMT+11:00":
-			offset = 39600000;
-			break;
-		case "GMT+12:00":// 东十二区(东西12区是一个区)
-			offset = 43200000;
-			break;
-		default:
-			break;
-		}
-
-		// 减去默认时区偏移量及夏令时，获得UTC时间
-		cal.add(Calendar.MILLISECOND, -(cal.get(Calendar.ZONE_OFFSET) + cal.get(Calendar.DST_OFFSET)));
-		// 加上当地时区的偏移量，获得当地时区的时间
-		cal.add(Calendar.MILLISECOND, offset);
-
-		return cal.getTime();
+	static {
+		BEAUTIFUL_SDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	}
 
 	/**
-	 * 将传入的UTC时间转化成某个时区的时间
+	 * 获取某个GMT时区的时间增量
 	 * 
-	 * @param utcDate
-	 * @param GMTString "GMT+08:00" "GMT+09:00"
+	 * @param ID the ID for a TimeZone, either an abbreviation such as "PST", a full
+	 *           name such as "America/Los_Angeles", or a customID such as
+	 *           "GMT-8:00". Note that the support of abbreviations is for JDK 1.1.x
+	 *           compatibility only and full names should be used.
 	 * @return
 	 */
-	public static Date getLocalTime(Date utcDate, String GMTString) {
+	public static int getOffset(String ID) {
+		// 获取对应时区的时间增量，并在UTC时间基础上加上增量获得对应时区时间
+		Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone(ID));
+		return calendar.get(Calendar.ZONE_OFFSET) + calendar.get(Calendar.DST_OFFSET);
+	}
 
+	/**
+	 * 获取当前默认时区的时间增量，default time zone and locale
+	 * 
+	 * @return
+	 */
+	public static int getOffset() {
+		Calendar calendar = Calendar.getInstance();
+		return calendar.get(Calendar.ZONE_OFFSET) + calendar.get(Calendar.DST_OFFSET);
+	}
+
+	/**
+	 * 获得当前UTC的时间
+	 * 
+	 * @return
+	 */
+	public static Date getUTCTime() {
+		Calendar calendar = Calendar.getInstance();
+		// 默认时区时间减去默认时区的时间增量(该时区的时间增量加上该时区的夏令时增量(如果使用))得到UTC时间
+		calendar.add(Calendar.MILLISECOND, -(calendar.get(Calendar.ZONE_OFFSET) + calendar.get(Calendar.DST_OFFSET)));
+		return calendar.getTime();
+	}
+
+	/**
+	 * 获得某个GMT时区的时间
+	 * 
+	 * @param ID the ID for a TimeZone, either an abbreviation such as "PST", a full
+	 *           name such as "America/Los_Angeles", or a customID such as
+	 *           "GMT-8:00". Note that the support of abbreviations is for JDK 1.1.x
+	 *           compatibility only and full names should be used.
+	 * @return
+	 */
+	public static Date getGMTTime(String ID) {
+		// 先将calendar先设置为UTC时间
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(getUTCTime());
+		// 再加上这个时区的时间增量
+		calendar.add(Calendar.MILLISECOND, getOffset(ID));
+		return calendar.getTime();
+	}
+
+	/**
+	 * 将传入的UTC时间转化成某个GMT时区的时间
+	 * 
+	 * @param utcDate
+	 * @param ID      the ID for a TimeZone, either an abbreviation such as "PST", a
+	 *                full name such as "America/Los_Angeles", or a customID such as
+	 *                "GMT-8:00". Note that the support of abbreviations is for JDK
+	 *                1.1.x compatibility only and full names should be used.
+	 * @return
+	 */
+	public static Date getGMTTime(Date utcDate, String ID) {
 		if (null == utcDate) {
 			return null;
 		}
-
-		Calendar cal = Calendar.getInstance(); // 获得当前默认时间
+		Calendar cal = Calendar.getInstance();
 		cal.setTime(utcDate);
-
-		int offset = 0; // 时间偏移量
-		switch (GMTString) {
-		case "GMT-12:00": // 西十二区(东西12区是一个区)
-			offset = -43200000;
-			break;
-		case "GMT-11:00":
-			offset = -39600000;
-			break;
-		case "GMT-10:00":
-			offset = -36000000;
-			break;
-		case "GMT-09:00":
-			offset = 32400000;
-			break;
-		case "GMT-9:00":
-			offset = 32400000;
-			break;
-		case "GMT-08:00":
-			offset = -28800000;
-			break;
-		case "GMT-8:00":
-			offset = -28800000;
-			break;
-		case "GMT-07:00":
-			offset = -25200000;
-			break;
-		case "GMT-7:00":
-			offset = -25200000;
-			break;
-		case "GMT-06:00":
-			offset = -21600000;
-			break;
-		case "GMT-6:00":
-			offset = -21600000;
-			break;
-		case "GMT-05:00":
-			offset = -18000000;
-			break;
-		case "GMT-5:00":
-			offset = -18000000;
-			break;
-		case "GMT-04:00":
-			offset = -14400000;
-			break;
-		case "GMT-4:00":
-			offset = -14400000;
-			break;
-		case "GMT-03:00":
-			offset = -10800000;
-			break;
-		case "GMT-3:00":
-			offset = -10800000;
-			break;
-		case "GMT-02:00":
-			offset = -7200000;
-			break;
-		case "GMT-2:00":
-			offset = -7200000;
-			break;
-		case "GMT-01:00":
-			offset = -3600000;
-			break;
-		case "GMT-1:00":
-			offset = -3600000;
-			break;
-		case "GMT-00:00":
-			break;
-		case "GMT-0:00":
-			break;
-		case "GMT+00:00":
-			break;
-		case "GMT+0:00":
-			break;
-		case "GMT+01:00":
-			offset = 3600000;
-			break;
-		case "GMT+1:00":
-			offset = 3600000;
-			break;
-		case "GMT+02:00":
-			offset = 7200000;
-			break;
-		case "GMT+2:00":
-			offset = 7200000;
-			break;
-		case "GMT+03:00":
-			offset = 10800000;
-			break;
-		case "GMT+3:00":
-			offset = 10800000;
-			break;
-		case "GMT+04:00":
-			offset = 14400000;
-			break;
-		case "GMT+4:00":
-			offset = 14400000;
-			break;
-		case "GMT+05:00":
-			offset = 18000000;
-			break;
-		case "GMT+5:00":
-			offset = 18000000;
-			break;
-		case "GMT+06:00":
-			offset = 21600000;
-			break;
-		case "GMT+6:00":
-			offset = 21600000;
-			break;
-		case "GMT+07:00":
-			offset = 25200000;
-			break;
-		case "GMT+7:00":
-			offset = 25200000;
-			break;
-		case "GMT+08:00":
-			offset = 28800000;
-			break;
-		case "GMT+8:00":
-			offset = 28800000;
-			break;
-		case "GMT+09:00":
-			offset = 32400000;
-			break;
-		case "GMT+9:00":
-			offset = 32400000;
-			break;
-		case "GMT+10:00":
-			offset = 36000000;
-			break;
-		case "GMT+11:00":
-			offset = 39600000;
-			break;
-		case "GMT+12:00":// 东十二区(东西12区是一个区)
-			offset = 43200000;
-			break;
-		default:
-			break;
-		}
-
 		// 加上当地时区的偏移量，获得当地时区的时间
-		cal.add(Calendar.MILLISECOND, offset);
+		cal.add(Calendar.MILLISECOND, getOffset(ID));
 		return cal.getTime();
 	}
 
@@ -336,7 +100,7 @@ public class TimeUtils {
 		if (null == date) {
 			return null;
 		}
-		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+		return BEAUTIFUL_SDF.format(date);
 	}
 
 	/**
@@ -347,11 +111,14 @@ public class TimeUtils {
 	 * @throws ParseException
 	 */
 	public static Date getDate(String beautifulTimeString) throws ParseException {
-		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(beautifulTimeString);
+		if (null == beautifulTimeString) {
+			return null;
+		}
+		return BEAUTIFUL_SDF.parse(beautifulTimeString);
 	}
 
 	/**
-	 * 将形如"yyyy-MM-ddTHH:mm:ss.000Z"格式的字符串转化为Date
+	 * 将形如"yyyy-MM-ddTHH:mm:ss.000Z"表示UTC时间的字符串转化为Date
 	 * 
 	 * @param utcStr
 	 * @param isUtcString 是否是形如"2020-12-06T01:28:00.000Z"的字符串
@@ -363,11 +130,34 @@ public class TimeUtils {
 		if (null == utcStr || !utcStr.matches(regex)) {
 			return null;
 		}
-
 		// 将传入的字符串转换成 yyyy-MM-dd HH:mm:ss 的格式
 		String dateString = utcStr.substring(0, utcStr.lastIndexOf(".")).replace("T", " ");
-
 		return getDate(dateString);
+	}
+
+	/**
+	 * 如果date1比date2靠前返回true，否则返回false
+	 * 
+	 * @param date1
+	 * @param date2
+	 * @return
+	 */
+	public static boolean isBefore(Date date1, Date date2) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
+		Double doubleDate1 = Double.parseDouble(sdf.format(date1));
+		Double doubleDate2 = Double.parseDouble(sdf.format(date2));
+		return doubleDate2 > doubleDate1;
+	}
+	
+	/**
+	 * 如果date1比date2靠后返回true，否则返回false
+	 * 
+	 * @param date1
+	 * @param date2
+	 * @return
+	 */
+	public static boolean isAfter(Date date1, Date date2) {
+		return !isBefore(date1, date2);
 	}
 
 }

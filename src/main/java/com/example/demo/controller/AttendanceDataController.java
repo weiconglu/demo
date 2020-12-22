@@ -38,8 +38,8 @@ public class AttendanceDataController {
 				attendanceData.setLoginName(record.get(Headers.loginName));
 				attendanceData.setFullName(record.get(Headers.fullName));
 				attendanceData.setStatus(record.get(Headers.status));
-				attendanceData.setStartAt(TimeUtils.getBeautifulString(TimeUtils.getLocalTime(TimeUtils.getDate(record.get(Headers.startAt), true), "GMT+09:00")));
-				attendanceData.setEndAt(TimeUtils.getBeautifulString(TimeUtils.getLocalTime(TimeUtils.getDate(record.get(Headers.endAt), true), "GMT+09:00")));
+				attendanceData.setStartAt(TimeUtils.getBeautifulString(TimeUtils.getGMTTime(TimeUtils.getDate(record.get(Headers.startAt), true), "GMT+09:00")));
+				attendanceData.setEndAt(TimeUtils.getBeautifulString(TimeUtils.getGMTTime(TimeUtils.getDate(record.get(Headers.endAt), true), "GMT+09:00")));
 				attendanceData.setDeskName(record.get(Headers.deskName));
 				attendanceData.setSiteName(record.get(Headers.siteName));
 				attendanceData.setFloorName(record.get(Headers.floorName));
