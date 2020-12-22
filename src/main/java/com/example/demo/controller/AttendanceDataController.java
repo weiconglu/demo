@@ -32,7 +32,7 @@ public class AttendanceDataController {
 	public String insert() {
 
 		AttendanceData attendanceData = new AttendanceData();
-		try (Reader in = new FileReader("data.csv")) {
+		try (Reader in = new FileReader("data/data.csv")) {
 			Iterable<CSVRecord> records = CSVFormat.RFC4180.withHeader(Headers.class).parse(in);
 			for (CSVRecord record : records) {
 				attendanceData.setLoginName(record.get(Headers.loginName));
