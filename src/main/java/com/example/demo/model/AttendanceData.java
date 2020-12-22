@@ -1,7 +1,8 @@
 package com.example.demo.model;
 
 /**
- * @author founder3829
+ * 
+ * @author lu_weicong
  *
  */
 public class AttendanceData {
