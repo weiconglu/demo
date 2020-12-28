@@ -15,15 +15,15 @@ import javax.mail.Transport;
 import com.sun.mail.imap.IMAPStore;
 
 /**
- * メール受送信ヘルパークラス
+ * 用于辅助收发邮件的MailHelper
+ * 
  * @author lu_weicong
  *
  */
 public class MailHelper {
 
 	/**
-	 * メールを送信する
-	 * 転入されたmailPropertiesファイルには３つの認証用セッティングが必要です： mail.smtp.host mail.user mail.password
+	 * 发送邮件，传入的Properties文件中必须以下三个认证用的属性： mail.smtp.host mail.user mail.password
 	 * 
 	 * @param session
 	 * @param mailConfigProperties
@@ -31,12 +31,12 @@ public class MailHelper {
 	 */
 	public static void sendMail(Session session, Properties mailProperties, Message msg) {
 		Transport transport = null;
-		
+
 		int times = 0; // try times
 		boolean flag = false; // send mail ok flag
-		
-		while (flag==false && times < 3) {
-			
+
+		while (flag == false && times < 3) {
+
 			try {
 				transport = session.getTransport("smtp");
 				transport.connect(mailProperties.getProperty("mail.smtp.host"), mailProperties.getProperty("mail.user"),
@@ -54,18 +54,17 @@ public class MailHelper {
 
 				transport.close();
 				flag = true;
-				
 			} catch (MessagingException e) {
 				e.printStackTrace();
 				times++;
-				System.out.println("第" + times + "回トライ：通知メールを送信します");
+				System.out.println("邮件发送时遇到了错误，正在重试：第" + times + "次...");
 			}
 		}
 	}
 
 	/**
-	 * POP3 Storeを取得する
-	 * 転入されたmailPropertiesファイルには３つの認証用セッティングが必要です： mail.pop3.host mail.user mail.password
+	 * 获得POP3 Store，传入的Properties文件中必须以下三个认证用的属性： mail.pop3.host mail.user
+	 * mail.password
 	 * 
 	 * @param mailProperties
 	 * @return
@@ -84,10 +83,10 @@ public class MailHelper {
 		}
 		return store;
 	}
-	
+
 	/**
-	 * IMAP Storeを取得する
-	 * 転入されたmailPropertiesファイルには３つの認証用セッティングが必要です： mail.imap.host mail.user mail.password
+	 * 获得IMAP Store，传入的Properties文件中必须以下三个认证用的属性： mail.imap.host mail.user
+	 * mail.password
 	 * 
 	 * @param mailProperties
 	 * @return
@@ -99,16 +98,16 @@ public class MailHelper {
 			store = (IMAPStore) session.getStore("imap");
 			store.connect(mailProperties.getProperty("mail.imap.host"), mailProperties.getProperty("mail.user"),
 					mailProperties.getProperty("mail.password"));
-			
-			//------------------------------imap 認証-------------------------------
+
+			// -------------连接IMAP邮箱时发送给服务器的认证信息-------------
 			Map<String, String> clientParams = new HashMap<String, String>();
-			clientParams.put("name","myname");      
-			clientParams.put("version","1.0.0");      
-			clientParams.put("vendor","myclient");      
-			clientParams.put("support-email","testmail@test.com");  
+			clientParams.put("name", "myname");
+			clientParams.put("version", "1.0.0");
+			clientParams.put("vendor", "myclient");
+			clientParams.put("support-email", "testmail@test.com");
 			store.id(clientParams);
-			//------------------------------------------------------------------------
-			
+			// -------------连接IMAP邮箱时发送给服务器的认证信息-------------
+
 		} catch (NoSuchProviderException e) {
 			e.printStackTrace();
 		} catch (MessagingException e) {
@@ -118,7 +117,7 @@ public class MailHelper {
 	}
 
 	/**
-	 * INBOXを取得する
+	 * 获得"INBOX"文件夹
 	 * 
 	 * @param store
 	 * @return
@@ -134,7 +133,7 @@ public class MailHelper {
 	}
 
 	/**
-	 * RO権限でfolderを開く
+	 * 以只读方式打开文件夹
 	 * 
 	 * @param folder
 	 */
@@ -147,7 +146,7 @@ public class MailHelper {
 	}
 
 	/**
-	 * RW権限でfolderを開く
+	 * 以读写方式打开文件夹
 	 * 
 	 * @param folder
 	 */
@@ -160,7 +159,7 @@ public class MailHelper {
 	}
 
 	/**
-	 * folderにあるメールを取得する
+	 * 获得文件夹中的邮件
 	 * 
 	 * @param folder
 	 * @return
@@ -176,10 +175,11 @@ public class MailHelper {
 	}
 
 	/**
-	 * folderを閉じる
+	 * 关闭文件夹folder
 	 * 
 	 * @param folder
-	 * @param expungeFlag expunges all deleted messages if this flag is true
+	 * @param expungeFlag expunges all deleted messages if this flag is
+	 *                    true。如果这expungeFlag为true，关闭文件夹时将删除所有带Flag.DELETED标记的邮件(仅对IMAP邮件有效)
 	 */
 	public static void closeFolder(Folder folder, boolean expungeFlag) {
 		try {
@@ -190,7 +190,7 @@ public class MailHelper {
 	}
 
 	/**
-	 * storeを閉じる
+	 * 关闭store
 	 * 
 	 * @param store
 	 */

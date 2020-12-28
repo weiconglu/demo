@@ -94,6 +94,9 @@ public class MyMsg extends MimeMessage {
 		}
 	}
 
+	/**
+	 * 设置邮件主题
+	 */
 	@Override
 	public void setSubject(String subject) {
 		try {
@@ -103,6 +106,9 @@ public class MyMsg extends MimeMessage {
 		}
 	}
 
+	/**
+	 * 设置邮件正文
+	 */
 	@Override
 	public void setText(String text) {
 		try {
