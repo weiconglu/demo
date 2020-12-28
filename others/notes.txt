@@ -1,5 +1,0 @@
-
-http://localhost:8080/demo/user/getAllUser
-
-http://localhost:8080/demo/user/getUserById/1
-

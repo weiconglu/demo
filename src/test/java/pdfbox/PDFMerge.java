@@ -11,11 +11,11 @@ public class PDFMerge {
 	public static void main(String[] args) {
 
 		PDFMergerUtility pdfMerger = new PDFMergerUtility();
-		pdfMerger.setDestinationFileName("pdf/fusei.pdf");
+		pdfMerger.setDestinationFileName("data/pdf/fusei.pdf");
 
 		try {
 			for (int i = 1; i < 11; i++) {
-				File file = new File("pdf/" + i + ".pdf");
+				File file = new File("data/pdf/" + i + ".pdf");
 				pdfMerger.addSource(file);
 			}
 			pdfMerger.mergeDocuments();
