@@ -8,12 +8,6 @@ import java.util.TimeZone;
 
 public class TimeUtils {
 
-	public static SimpleDateFormat BEAUTIFUL_SDF = null;
-
-	static {
-		BEAUTIFUL_SDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	}
-
 	/**
 	 * 获取某个GMT时区的时间增量
 	 * 
@@ -100,7 +94,7 @@ public class TimeUtils {
 		if (null == date) {
 			return null;
 		}
-		return BEAUTIFUL_SDF.format(date);
+		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
 	}
 
 	/**
@@ -114,7 +108,7 @@ public class TimeUtils {
 		if (null == beautifulTimeString) {
 			return null;
 		}
-		return BEAUTIFUL_SDF.parse(beautifulTimeString);
+		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(beautifulTimeString);
 	}
 
 	/**

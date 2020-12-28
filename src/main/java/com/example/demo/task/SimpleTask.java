@@ -2,17 +2,19 @@ package com.example.demo.task;
 
 import java.util.Date;
 
+import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
 import com.example.demo.utils.TimeUtils;
 
 /**
  * 
- * @author Administrator
+ * @author lu_weicong
  *
  */
-//@Configuration
-//@EnableScheduling
+@Configuration
+@EnableScheduling
 public class SimpleTask {
 	
 	@Scheduled(fixedRate = 10000)
