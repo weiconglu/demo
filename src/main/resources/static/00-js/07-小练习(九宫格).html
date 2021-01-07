@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>07-小练习(九宫格).html</title>
+
+	<style>
+		#div1 {
+			width: 300px;
+			height: 300px;
+		}
+
+		.red {
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			/* 设置此样式，以让独占一行的div能够横向显示 */
+			float: left;
+		}
+
+		.blue {
+			width: 100px;
+			height: 100px;
+			background-color: blue;
+			float: left;
+		}
+	</style>
+
+	<script>
+		function initSudoku() {
+
+			var div1 = document.getElementById("div1")
+			div1.innerHTML = ""
+			for (var i = 0; i < 9; i++) {
+				if (i % 2 == 0) {
+					div1.innerHTML += "<div class='red'></div>"
+				} else {
+					div1.innerHTML += "<div class='blue'></div>"
+				}
+			}
+
+		}
+	</script>
+
+</head>
+
+<body>
+
+	<button onclick="initSudoku()">添加九宫格</button>
+	<div id="div1"></div>
+
+</body>
+
+</html>

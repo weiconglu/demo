@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../libs/vue.js"></script>
+</head>
+
+<body>
+
+<div id="app">
+    <h3>
+        <!--        当逻辑判断复杂时，建议使用计算属性代替，因为这种写法不易于阅读-->
+        <span v-if="score >= 95">优秀</span>
+        <span v-else-if="score >= 85">优良</span>
+        <span v-else-if="score >= 60">及格</span>
+        <span v-else>不及格</span>
+    </h3>
+</div>
+
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {
+            msg: "你好",
+            score: 80
+        }
+    })
+</script>
+
+</body>
+
+</html>

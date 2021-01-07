@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>01-v-bind的基本使用</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2> {{msg}}</h2>
+        <!--    前面学习的一些指令作用主要是将值插入到模板的内容当中，需要将某些属性进行动态绑定时，可以使用v-bind (语法糖：:)-->
+        <img v-bind:src="imgUrl" width="100px" height="100px">
+        <a v-bind:href="searchEngineUrl">搜索引擎</a><br>
+        <!--    语法糖写法-->
+        <img :src="imgUrl" width="100px" height="100px">
+        <a :href="searchEngineUrl">搜索引擎</a>
+    </div>
+
+    <script src="../../libs/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data: {
+                msg: "你好",
+                imgUrl: "https://cn.vuejs.org/images/logo.png",
+                searchEngineUrl: "https://www.baidu.com"
+            }
+        })
+    </script>
+</body>
+
+</html>

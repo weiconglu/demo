@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>04-v-text指令的使用</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2> {{msg}}</h2>
+        <!--    更新元素的 textContent。如果要更新部分的 textContent，需要使用 {{ Mustache }} 插值。-->
+        <h2 v-text="msg"></h2>
+    </div>
+
+    <script src="../../libs/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data: {
+                msg: "你好"
+            }
+        })
+    </script>
+</body>
+
+</html>

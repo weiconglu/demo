@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>02-v-on参数传递.html</title>
+	<script src="../../libs/vue.js"></script>
+</head>
+
+<body>
+
+	<div id="app">
+		<!-- 事件调用的方法无需传入参数时，可以省略方法后面的小括号() -->
+		<!-- <input type="button" id="btn1" value="按钮一" @click="funBtn1()"> -->
+		<input type="button" id="btn1" value="按钮一" @click="funBtn1">
+
+		<!-- 在定义事件时，写方法省略了小括号，但是方法本身是需要传入一个参数的，
+			这个时候vue会把浏览器产生的event事件对象作为参数传入到方法 -->
+		<input type="button" id="btn2" value="按钮二" @click="funBtn2">
+
+		<!-- 假如事件需要传入event对象，同时也需要其他参数，在调用时传入$event作为参数来获得event对象 -->
+		<input type="button" id="btn3" value="按钮三" @click="funBtn3(666,$event)">
+	</div>
+
+	<script>
+		const app = new Vue({
+			el: "#app",
+			data: {
+			},
+			methods: {
+				funBtn1() {
+					console.log("funBtn1被点击了");
+				},
+				funBtn2(event) {
+					console.log("funBtn2被点击了", event);
+				},
+				funBtn3(value, event) {
+					console.log("funBtn3被点击了", value, event);
+				},
+			}
+		})
+	</script>
+
+</body>
+
+</html>

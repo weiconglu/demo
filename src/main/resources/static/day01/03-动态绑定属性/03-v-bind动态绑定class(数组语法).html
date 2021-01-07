@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>03-v-bind动态绑定class(数组语法)</title>
+
+    <style>
+        .red {
+            color: red;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="app">
+        <!--    class里面的内容是个数组-->
+        <h2 :class="getClasses()"> {{msg}}</h2>
+        <!--    <button id="btnXColor" v-on:click="xColor">变色</button>-->
+        <button id="btnXColor" @click="xColor">变色</button>
+    </div>
+
+    <script src="../../libs/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data: {
+                msg: "你好",
+                red: 'red'
+            },
+            methods: {
+                xColor: function () {
+                    this.isRed = !this.isRed
+                },
+                getClasses: function () {
+                    return [this.red]
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>

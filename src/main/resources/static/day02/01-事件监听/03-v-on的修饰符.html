@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>03-v-on的修饰符</title>
+	<script src="../../libs/vue.js"></script>
+</head>
+
+<body>
+
+	<div id="app">
+		<div @click="divClick()">
+			一个安安静静的div<br>
+			<!-- 使用.stop修饰符来停止事件冒泡(相当于调用event.stopPropagation()) -->
+			<!-- <input type="button" value="按钮" v-on:click="btnClick()"> -->
+			<input type="button" value="按钮" v-on:click.stop="btnClick()">
+		</div>
+		<hr>
+
+		<form action="https://www.baidu.com">
+			<!-- 使用.prevent修饰符来阻止默认提交表单(相当于调用event.preventDefault()) -->
+			<!-- <input type="submit" value="提交"> -->
+			<input type="submit" value="提交" @click.prevent="submitClick()">
+		</form>
+		<hr>
+
+		<!-- keyqup/keydown 键盘按键敲击事件 -->
+		<!-- <input type="text" v-on:keyup="kKeyUp()"> -->
+		<input type="text" v-on:keyup.enter="kKeyUp()">
+
+		<!-- .once修饰符，约束事件只执行一次 -->
+		<input type="text" v-on:keyup.once="onceKeyup()">
+	</div>
+
+	<script>
+		const app = new Vue({
+			el: "#app",
+			data: {
+			},
+			methods: {
+				btnClick() {
+					console.log("按钮被点击了")
+				},
+				divClick() {
+					console.log("div被点击了")
+				},
+
+				submitClick() {
+					console.log("submitClick()点击表单的提交按钮了")
+				},
+
+				kKeyUp() {
+					console.log("键盘上的回车键被敲击了")
+				},
+
+				onceKeyup() {
+					console.log("键盘上的回车键被敲击了")
+				}
+			},
+		})
+	</script>
+
+</body>
+
+</html>

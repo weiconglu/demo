@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>03-计算属性的set方法和get方法.html</title>
+	<script src="../../libs/vue.js"></script>
+</head>
+
+<body>
+
+	<div id="app">
+		<h2>{{fullName}}</h2>
+		<input type="text" id="name1">
+		<input type="text" id="name2">
+		<input type="button" value="设置名字" v-on:click="setName()">
+	</div>
+
+	<script>
+		const app = new Vue({
+			el: "#app",
+			data: {
+				firstName: "James",
+				lastName: "Blunt"
+			},
+			methods: {
+				// 设置名字按钮的监听方法
+				setName: function () {
+					this.firstName = document.getElementById("name1").value
+					this.lastName = document.getElementById("name2").value
+				}
+			},
+			computed: {
+				// fullName其实是个属性，这个计算属性的全写如下
+				fullName: {
+					set(nameString) {
+						var name = nameString.split(" ")
+						this.firstName = name[0]
+						this.lastName = name[1]
+					},
+					get() {
+						return this.firstName + " " + this.lastName
+					}
+				},
+
+				// 一般不用写set
+				fullName1: {
+					get() {
+						return this.firstName + " " + this.lastName
+					}
+				},
+
+				// 还可以简写
+				fullName2: function () {
+					return this.firstName + " " + this.lastName
+				}
+			}
+		})
+	</script>
+
+</body>
+
+</html>

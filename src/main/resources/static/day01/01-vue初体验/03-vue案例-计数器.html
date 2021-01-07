@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>03-vue案例-计数器</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>当前计数：{{counter}}</h2>
+        <!--    <button v-on:click="counter++">+</button>-->
+        <!--    <button v-on:click="counter&#45;&#45;">-</button>-->
+        <!--    语法糖写法-->
+        <!--    <button @click="counter++">+</button>-->
+        <!--    <button @click="counter&#45;&#45;">-</button>-->
+        <button @click="add()">+</button>
+        <button @click="sub()">-</button>
+    </div>
+
+    <script src="../../libs/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data: {
+                counter: 0
+            },
+            methods: {
+                add: function () {
+                    console.log("add()被执行了")
+                    this.counter++
+                },
+                sub: function () {
+                    console.log("sub()被执行了")
+                    this.counter--
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>

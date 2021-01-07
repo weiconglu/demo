@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>08-小练习(添加矩阵div).html</title>
+
+	<style>
+		td {
+			text-align: center;
+		}
+
+		.redCube {
+			width: 50px;
+			height: 50px;
+			float: left;
+			background-color: red;
+			text-align: center;
+		}
+
+		.blueCube {
+			width: 50px;
+			height: 50px;
+			float: left;
+			background-color: blue;
+			text-align: center;
+		}
+
+		#msg {
+			color: red;
+		}
+	</style>
+
+	<script>
+
+		function addMatrixDiv() {
+			var motherDiv = document.getElementById("motherDiv")
+			var rowsInput = document.getElementById("rowsInput")
+			var columnsInput = document.getElementById("columnsInput")
+
+			var msg = document.getElementById("msg")
+
+			// 清除提示信息
+			msg.innerText = ""
+			// 清空母div的内容
+			motherDiv.innerHTML = ""
+
+			var rows = Number(rowsInput.value)
+			var columns = Number(columnsInput.value)
+			var result = rows * columns
+
+			if (!Number.isInteger(result)) {
+				msg.innerText = "输入错误，请重新输入"
+			} else {
+				// 设置母div的宽度
+				motherDiv.style.width = columns * 50 + "px"
+				var cubeClass
+				for (var i = 1; i < result + 1; i++) {
+					if (i % 2 == 0) {
+						cubeClass = "redCube"
+					} else {
+						cubeClass = "blueCube"
+					}
+					motherDiv.innerHTML += "<div class='" + cubeClass + "'>" + i + "</div>"
+				}
+			}
+		}
+
+	</script>
+
+</head>
+
+<body>
+
+	<table>
+		<tr>
+			<td>
+				行数
+			</td>
+			<td>
+				列数
+			</td>
+			<td>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="text" id="rowsInput">
+			</td>
+			<td>
+				<input type="text" id="columnsInput">
+			</td>
+			<td>
+				<input type="button" value="添加" onclick="addMatrixDiv()">
+			</td>
+		</tr>
+	</table>
+
+	<div id="msg"></div>
+	<div id="motherDiv"></div>
+
+</body>
+
+</html>

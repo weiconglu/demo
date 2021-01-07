@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../libs/vue.js"></script>
+</head>
+
+<body>
+
+<div id="app">
+    <!--    在开发中，如果这个组件显示/隐藏切换频率高就使用v-show，如果频率低就用v-if-->
+    <h2 v-if="flag == true">{{msg}}</h2>
+    <!--    v-show 只是给组件添加了一个style="display: none;"-->
+    <h2 v-show="flag == true">{{msg}}</h2>
+</div>
+
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {
+            msg: "你好",
+            flag: true
+        }
+    })
+</script>
+
+</body>
+
+</html>

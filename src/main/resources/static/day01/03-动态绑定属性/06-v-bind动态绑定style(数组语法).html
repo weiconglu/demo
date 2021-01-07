@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>06-v-bind动态绑定style(数组语法)</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <h2 v-bind:style="[baseStyle,bgcStyle]"> {{msg}}</h2>
+    </div>
+
+    <script src="../../libs/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data: {
+                msg: "你好",
+                baseStyle: { fontSize: '50px', color: 'white' },
+                bgcStyle: { backgroundColor: 'green' }
+            }
+        })
+    </script>
+
+</body>
+
+</html>

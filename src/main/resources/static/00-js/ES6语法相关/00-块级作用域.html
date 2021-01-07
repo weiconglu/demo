@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+
+	<script>
+
+		/* 
+		ES5之前因为if和for都没有块级作用域的概念，所以在很多时候，我们需要借助function的作用域来解决使用外面变量的问题
+		*/
+		// var 定义的变量没有块级作用域
+		{
+			var name = "James1"
+			function printName1() {
+				console.log(name)
+			}
+		}
+		name = "Kobe1"
+		printName1() // 在这里想要输出James，但是name已经被人改成了Kobe
+
+		// let 定义的变量有块级作用域
+		{
+			let name = "James2"
+			function printName2() {
+				console.log(name)
+			}
+		}
+		name = "Kobe2"
+		printName2() // 在这里想要输出James，也是输出James
+
+
+	</script>
+</head>
+
+<body>
+
+</body>
+
+</html>

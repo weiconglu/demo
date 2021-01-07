@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>03-登录方式小练习.html</title>
+    <script src="../../libs/vue.js"></script>
+</head>
+
+<body>
+
+<div id="app">
+    用户登录：<input type="text" id="loginInput" v-bind:placeholder="loginTips">
+    <input type="button" @click="xLoginType" value="切换登录方式">
+</div>
+
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {
+            loginType: "username"
+        },
+        methods: {
+            xLoginType() {
+                // 应该还有比下面这个更好的方法，重置输入框input
+                document.getElementById("loginInput").value = ""
+                if ("username" === this.loginType) {
+                    this.loginType = "email"
+                } else {
+                    this.loginType = "username"
+                }
+            }
+        },
+        computed: {
+            loginTips() {
+                if ("username" == this.loginType) {
+                    return "请输入用户名"
+                }
+                if ("email" == this.loginType) {
+                    return "请输入邮箱"
+                }
+            }
+        }
+    })
+</script>
+
+</body>
+
+</html>

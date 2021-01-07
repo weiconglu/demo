@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>02-列表展示</title>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{msg}}</p>
+        <ol>
+            <!-- 要遍历哪个内容v-for就写在哪里-->
+            <li v-for="item in novel">{{item}}</li>
+        </ol>
+    </div>
+    <script src="../../libs/vue.js"></script>
+    <script>
+        // let const
+        const app = new Vue({
+            el: "#app",
+            data: {
+                msg: "你好，Vue",
+                novel: ["西游记", "三国演义", "红楼梦", "水浒传"]
+            }
+        })
+    </script>
+</body>
+
+</html>

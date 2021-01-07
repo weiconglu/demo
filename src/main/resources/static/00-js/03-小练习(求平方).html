@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>03-小练习(求平方).html</title>
+</head>
+
+<body>
+
+	<input type="text" id="inputNumber" placeholder="请在此输入要计算的数字" />
+	<input type="button" value="求平方" onclick="getSqrt()">
+
+	<script>
+		var inputNumber = document.getElementById("inputNumber")
+		function getSqrt() {
+			var result = inputNumber.value * inputNumber.value
+			console.log(result)
+			// 注意判断是不是NaN应该用isNaN()
+			if (!isNaN(result)) {
+				inputNumber.value = result
+			} else {
+				inputNumber.value = "输入有误，请重新输入"
+			}
+		}
+	</script>
+
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>04-计算属性和methods的对比.html</title>
+	<script src="../../libs/vue.js"></script>
+</head>
+
+<body>
+
+	<div id="app">
+
+		<!-- <h2>{{firstName}} {{lastName}}</h2> -->
+
+		<h2>{{getFullName()}}</h2>
+		<h2>{{getFullName()}}</h2>
+		<h2>{{getFullName()}}</h2>
+		<h2>{{getFullName()}}</h2>
+		<h2>{{getFullName()}}</h2>
+		<h2>{{getFullName()}}</h2>
+		<h2>{{getFullName()}}</h2>
+		<h2>{{getFullName()}}</h2>
+		<h2>{{getFullName()}}</h2>
+		<h2>{{getFullName()}}</h2>
+
+		<h2>{{fullName}}</h2>
+		<h2>{{fullName}}</h2>
+		<h2>{{fullName}}</h2>
+		<h2>{{fullName}}</h2>
+		<h2>{{fullName}}</h2>
+		<h2>{{fullName}}</h2>
+		<h2>{{fullName}}</h2>
+		<h2>{{fullName}}</h2>
+		<h2>{{fullName}}</h2>
+		<h2>{{fullName}}</h2>
+	</div>
+
+	<script>
+		const app = new Vue({
+			el: "#app",
+			data: {
+				firstName: "James",
+				lastName: "Blunt"
+			},
+			methods: {
+				// 方法会被调用多次
+				getFullName: function () {
+					console.log("-------getFullName被调用了----------");
+					return this.firstName + " " + this.lastName
+				}
+			},
+			computed: {
+				// 计算属性，如果里面的变量值未发生改变，只会被调用1次
+				fullName: function () {
+					console.log("-------计算属性fullName被调用了----------");
+					return this.firstName + " " + this.lastName
+				}
+			}
+		})
+	</script>
+
+</body>
+
+</html>

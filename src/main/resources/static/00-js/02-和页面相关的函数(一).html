@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>02-和页面相关的函数(一).html</title>
+</head>
+
+<body>
+	<h3>请在下面的文本框中输入内容，再点击"确定"按钮</h3>
+	<input type="text" id="inputSaySth" placeholder="说点儿啥呢...">
+	<input type="button" value="确定" onclick="confirm()">
+
+	<script>
+		function confirm() {
+			// 1、通过id得到页面中的元素
+			var inputSaySth = document.getElementById("inputSaySth")
+
+			// 2、输出文本框中的内容
+			alert(inputSaySth.value)
+
+			// 3、设置文本框的内容
+			inputSaySth.value = "请在此输入想说的内容"
+		}
+	</script>
+
+</body>
+
+</html>

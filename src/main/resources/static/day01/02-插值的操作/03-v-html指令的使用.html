@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>03-v-html指令的使用</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <h2> {{msg}}</h2>
+        <h2>{{url}}</h2>
+        <!--    更新元素的 innerHTML。注意：内容按普通 HTML 插入 - 不会作为 Vue 模板进行编译。如果试图使用 v-html 组合模板，可以重新考虑是否通过使用组件来替代。-->
+        <h2 v-html="url"></h2>
+    </div>
+
+    <script src="../../libs/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data: {
+                msg: "你好",
+                url: "<a href='https://www.baidu.com'>百度一下</a>"
+            }
+        })
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../libs/vue.js"></script>
+</head>
+
+<body>
+
+<div id="app">
+    <ul>
+        <li v-for="item in names">{{item}}</li>
+        <hr>
+        <li v-for="(item,index) in names">{{index + "-" + item}}</li>
+        <hr>
+        <!--        默认遍历对象输出value-->
+        <li v-for="item in person">{{item}}</li>
+        <hr>
+        <li v-for="(value,key) in person">{{value + "-" + key}}</li>
+        <hr>
+        <li v-for="(value,key,index) in person">{{value + "-" + key + "-" + index}}</li>
+        <hr>
+    </ul>
+</div>
+
+<script>
+    const app = new Vue({
+        el: "#app",
+        data: {
+            names: ['A', 'B', 'C', 'D'],
+            person: {
+                id: 1,
+                name: "韩梅梅",
+                age: 16,
+                gender: "女"
+            }
+        }
+    })
+</script>
+
+</body>
+
+</html>

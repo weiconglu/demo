@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>04-作业(v-for与v-bind练习)</title>
+    <style>
+        .red {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <h2> {{msg}}</h2>
+        <ul>
+            <li v-for="(item,index) in games" class="red">{{index + " - " + item}}</li>
+        </ul>
+    </div>
+
+    <script src="../../libs/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data: {
+                msg: "你好",
+                games: ["KOF97", "KOF98", "红警II", "反恐精英"],
+                isRed: false
+            }
+        })
+    </script>
+
+</body>
+
+</html>

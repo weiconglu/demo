@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>01-function的声明及调用.html</title>
+</head>
+
+<body>
+
+	<input type="button" value="按钮一" onclick="alert('66'+6)">
+	<input type="button" value="按钮二" onclick="alert('66'-6)">
+
+	<script>
+		// 无参无返回值
+		function f1() {
+			alert("我是一个无参无返回值的函数")
+		}
+		// f1()
+
+		// 无参有返回值 
+		function f2() {
+			return "我是一个无参有返回值的函数"
+		}
+		// alert(f2())
+
+		// 有参无返回值
+		function f3(id, name) {
+			alert(id + " " + name)
+		}
+		// f3(1, "Tom")
+
+		// 有参有返回值
+		function f4(x, y) {
+			return x + y
+		}
+		alert(f4(1, 1))
+	</script>
+
+</body>
+
+</html>

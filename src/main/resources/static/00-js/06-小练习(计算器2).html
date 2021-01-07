@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>06-小练习(计算器2).html</title>
+
+	<style>
+		td {
+			text-align: center;
+		}
+	</style>
+
+</head>
+
+<body>
+
+	<table>
+		<tr>
+			<td>数1</td>
+			<td></td>
+			<td>数2</td>
+			<td></td>
+			<td>结果</td>
+		</tr>
+		<tr>
+			<td><input type="text" id="number1"></td>
+			<td><span id="operator">&nbsp;</span></td>
+			<td><input type="text" id="number2"></td>
+			<td>=</td>
+			<td><input type="text" id="number3"></td>
+		</tr>
+	</table>
+
+	<!-- 通过传参来分辨点击的哪个按钮，从而调用对应的运算 -->
+	<button onclick="getResult(1)">+</button>
+	<button onclick="getResult(2)">-</button>
+	<button onclick="getResult(3)">*</button>
+	<button onclick="getResult(4)">/</button>
+
+	<div id="divMsg" style="color: red;"></div>
+
+	<script type="text/javascript">
+
+		function getResult(x) {
+			var number1 = document.getElementById("number1")
+			var operator = document.getElementById("operator")
+			var number2 = document.getElementById("number2")
+			var number3 = document.getElementById("number3")
+			var divMsg = document.getElementById("divMsg")
+
+			divMsg.innerText = ""
+
+			var number1Value = Number(number1.value)
+			var number2Value = Number(number2.value)
+
+			var result = 0
+			switch (x) {
+				case 1:
+					result = number1Value + number2Value
+					operator.innerText = "+"
+					break
+				case 2:
+					result = number1Value - number2Value
+					operator.innerText = "-"
+					break
+				case 3:
+					result = number1Value * number2Value
+					operator.innerText = "*"
+					break
+				case 4:
+					result = number1Value / number2Value
+					operator.innerText = "/"
+					break
+			}
+
+			if (!isNaN(result)) {
+				number3.value = result
+			} else {
+				number1.value = ""
+				operator.innerText = ""
+				number2.value = ""
+				number3.value = ""
+				divMsg.innerText = "您的输入有误，请重新输入"
+			}
+
+		}
+
+	</script>
+
+</body>
+
+</html>

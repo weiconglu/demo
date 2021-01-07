@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>04-vue的template</title>
+</head>
+
+<body>
+
+    <div id="app">
+        {{msg}}
+    </div>
+
+    <script src="../../libs/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data: {
+                msg: "你好"
+            }
+        })
+    </script>
+
+</body>
+
+</html>
