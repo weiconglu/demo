@@ -66,7 +66,6 @@
 			<version>2.0.21</version>
 		</dependency>
 
-
 		<!-- JAI Image I/O -->
 		<dependency>
 			<groupId>org.apache.pdfbox</groupId>
@@ -119,6 +118,19 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-csv</artifactId>
 			<version>1.8</version>
+		</dependency>
+
+		<!-- swagger2 使用2.9.2版本正常，使用3.0.0不正常 -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.9.2</version>
 		</dependency>
 
 		<dependency>
