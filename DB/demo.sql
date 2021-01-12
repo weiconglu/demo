@@ -4,11 +4,12 @@ USE demo;
 
 CREATE TABLE IF NOT EXISTS user (
   id int(11) NOT NULL AUTO_INCREMENT,
-  name varchar(20) NOT NULL,
+  username varchar(20) NOT NULL,
+  password varchar(20) NOT NULL,
   gender varchar(1),
   birthday date,
   PRIMARY KEY (id),
-  UNIQUE KEY name (name)
+  UNIQUE KEY name (username)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS tb_t_attendance_data (
@@ -23,5 +24,5 @@ CREATE TABLE IF NOT EXISTS tb_t_attendance_data (
   floorName varchar(20) DEFAULT NULL COMMENT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='csv data';
 
-INSERT INTO user(name,gender,birthday) VALUES ('tom', 'm', '1989-02-15');
-INSERT INTO user(name,gender,birthday) VALUES ('jerry', 'f', '1992-10-14');
+INSERT INTO user(username,gender,password,birthday) VALUES ('tom', 'm', 'tom','1989-02-15');
+INSERT INTO user(username,gender,password,birthday) VALUES ('jerry', 'f','jerry', '1992-10-14');

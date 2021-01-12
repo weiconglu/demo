@@ -61,10 +61,10 @@ public class UserController {
 
 	// 框架会自动检查请求参数是不是为null
 	@PostMapping("/add")
-	public String add(@RequestParam String name, @RequestParam String gender, @RequestParam String birthday) {
+	public String add(@RequestParam String username, @RequestParam String gender, @RequestParam String birthday) {
 
 		User user = new User();
-		user.setName(name);
+		user.setUsername(username);
 		user.setGender(gender);
 		user.setBirthday(birthday);
 		System.out.println("插入数据库前的user--->"+user.toString());
