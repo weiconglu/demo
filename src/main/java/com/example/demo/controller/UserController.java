@@ -42,14 +42,6 @@ public class UserController {
 	}
 
 	// 获取指定id的用户
-	@GetMapping("/get100")
-	public String get100() {
-		List<User> users = userService.get100();
-		System.out.println(users);
-		return "请查看控制台输出";
-	}
-
-	// 获取指定id的用户
 	@GetMapping("/getById/{id}")
 	public String getUserById(@PathVariable Integer id) {
 		User user = userService.getById(id);

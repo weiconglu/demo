@@ -33,11 +33,6 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> get100() {
-		return userMapper.get100();
-	}
-
-	@Override
 	public Integer setToManById(Integer id) {
 		return userMapper.setToManById(id);
 	}

@@ -21,7 +21,7 @@ public class DbUtils {
 		driverClass = "com.mysql.cj.jdbc.Driver";
 //		driverClass = "oracle.jdbc.driver.OracleDriver";
 //		driverClass = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-		jdbcUrl = "jdbc:mysql://127.0.0.1:3306/sb";
+		jdbcUrl = "jdbc:mysql://127.0.0.1:3306/demo?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
 //		jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
 //		jdbcUrl = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=test";
 	}
@@ -59,9 +59,10 @@ public class DbUtils {
 			}
 		}
 	}
-	
+
 	/**
 	 * 关闭ResultSet
+	 * 
 	 * @param resultSet
 	 */
 	public static void closeResultSet(ResultSet resultSet) {
@@ -73,9 +74,10 @@ public class DbUtils {
 			}
 		}
 	}
-	
+
 	/**
-	 * 关闭statement
+	 * 关闭Statement
+	 * 
 	 * @param statement
 	 */
 	public static void closeStatement(Statement statement) {
@@ -87,7 +89,12 @@ public class DbUtils {
 			}
 		}
 	}
-	
+
+	/**
+	 * 关闭PreparedStatement
+	 * 
+	 * @param statement
+	 */
 	public static void closeStatement(PreparedStatement statement) {
 		if (statement != null) {
 			try {

@@ -7,7 +7,7 @@ import java.util.Properties;
 public class ResourceUtils {
 	
 	/**
-	 * 传入properties文件的路径，返回properties
+	 * 传入项目中properties文件的路径，返回properties
 	 * @param
 	 * @return Properties
 	 */

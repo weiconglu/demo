@@ -106,7 +106,6 @@ public class MailHelper {
 			clientParams.put("vendor", "myclient");
 			clientParams.put("support-email", "testmail@test.com");
 			store.id(clientParams);
-			// -------------连接IMAP邮箱时发送给服务器的认证信息-------------
 
 		} catch (NoSuchProviderException e) {
 			e.printStackTrace();

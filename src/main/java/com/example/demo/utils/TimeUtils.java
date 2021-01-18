@@ -18,18 +18,19 @@ public class TimeUtils {
 	 * @return
 	 */
 	public static int getOffset(String ID) {
-		// 获取对应时区的时间增量，并在UTC时间基础上加上增量获得对应时区时间
 		Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone(ID));
+		// This field reflects the correct GMT offset value of the time + This field reflects the correct daylight saving offset value of
 		return calendar.get(Calendar.ZONE_OFFSET) + calendar.get(Calendar.DST_OFFSET);
 	}
 
 	/**
-	 * 获取当前默认时区的时间增量，default time zone and locale
+	 * 获取当前默认时区的时间增量
 	 * 
 	 * @return
 	 */
 	public static int getOffset() {
 		Calendar calendar = Calendar.getInstance();
+		// This field reflects the correct GMT offset value of the time + This field reflects the correct daylight saving offset value of
 		return calendar.get(Calendar.ZONE_OFFSET) + calendar.get(Calendar.DST_OFFSET);
 	}
 
@@ -40,7 +41,7 @@ public class TimeUtils {
 	 */
 	public static Date getUTCTime() {
 		Calendar calendar = Calendar.getInstance();
-		// 默认时区时间减去默认时区的时间增量(该时区的时间增量加上该时区的夏令时增量(如果使用))得到UTC时间
+		// 默认时区时间减去默认时区的时间增量(该时区的时间增量加上该时区的夏令时增量(如果使用))
 		calendar.add(Calendar.MILLISECOND, -(calendar.get(Calendar.ZONE_OFFSET) + calendar.get(Calendar.DST_OFFSET)));
 		return calendar.getTime();
 	}
@@ -57,21 +58,21 @@ public class TimeUtils {
 	public static Date getGMTTime(String ID) {
 		// 先将calendar先设置为UTC时间
 		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(getUTCTime());
+		calendar.setTime(TimeUtils.getUTCTime());
 		// 再加上这个时区的时间增量
 		calendar.add(Calendar.MILLISECOND, getOffset(ID));
 		return calendar.getTime();
 	}
 
 	/**
-	 * 将传入的UTC时间转化成某个GMT时区的时间
+	 * 将传入的UTC时间转化成对应的某个GMT时区的时间
 	 * 
 	 * @param utcDate
 	 * @param ID      the ID for a TimeZone, either an abbreviation such as "PST", a
 	 *                full name such as "America/Los_Angeles", or a customID such as
 	 *                "GMT-8:00". Note that the support of abbreviations is for JDK
 	 *                1.1.x compatibility only and full names should be used.
-	 * @return
+	 * @return 如果传入的utcDate为null则返回null
 	 */
 	public static Date getGMTTime(Date utcDate, String ID) {
 		if (null == utcDate) {
@@ -88,7 +89,7 @@ public class TimeUtils {
 	 * 将时间转化为"yyyy-MM-dd HH:mm:ss"格式的字符串，例：2008-08-08 08:08:08
 	 * 
 	 * @param date
-	 * @return
+	 * @return 如果传入的date为null则返回null
 	 */
 	public static String getBeautifulString(Date date) {
 		if (null == date) {
