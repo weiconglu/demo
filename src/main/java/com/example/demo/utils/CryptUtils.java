@@ -16,34 +16,34 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 /**
- * stringの暗号化と復号化、キーは"reception"と固定する
+ * 根据设定的key加/解密字符串
  * 
  * @author lu_weicong
  */
-public class CryptUtil {
+public class CryptUtils {
 
-	private static final String KEY = "reception"; // 暗号化キー
-	private static final String TRANSFORMATION_STRING = "AES/CBC/PKCS5Padding"; // 暗号化transformation name
-	private static final String ALGORITHM = "AES"; // 暗号化アルゴリズム
+	private static final String KEY = "reception"; // 密码、钥匙
+	private static final String TRANSFORMATION_STRING = "AES/CBC/PKCS5Padding"; // 加密使用的transformation name
+	private static final String ALGORITHM = "AES"; // 加密算法
 
-	private static byte[] saltKey = null; // salt key
-	private static IvParameterSpec iv = null; // vector key
+	private static byte[] saltKey = null; // salt key 加盐
+	private static IvParameterSpec iv = null; // vector key 向量
 	private static Cipher cipher = null;
 	private static SecretKey secretKey = null;
 
 	static {
 		try {
-			saltKey = Arrays.copyOf(KEY.getBytes("utf-8"), 16); // salt keyは16 bytesに変更する
+			saltKey = Arrays.copyOf(KEY.getBytes("utf-8"), 16); // 把KEY变成16字节的saltKey
 			iv = new IvParameterSpec("0000000000000000".getBytes("utf-8")); // default vector key 16 bytes
-			cipher = Cipher.getInstance(TRANSFORMATION_STRING); // cipher初期化
-			secretKey = new SecretKeySpec(saltKey, ALGORITHM); // secret key初期化
+			cipher = Cipher.getInstance(TRANSFORMATION_STRING); // cipher初始化
+			secretKey = new SecretKeySpec(saltKey, ALGORITHM); // secret key初始化
 		} catch (UnsupportedEncodingException | NoSuchAlgorithmException | NoSuchPaddingException e) {
 			e.printStackTrace();
 		}
 	}
 
 	/**
-	 * stringの暗号化
+	 * 加密字符串
 	 * 
 	 * @param content
 	 * @return
@@ -63,7 +63,7 @@ public class CryptUtil {
 	}
 
 	/**
-	 * stringの復号化
+	 * 解密字符串
 	 * 
 	 * @param content
 	 * @return
@@ -73,7 +73,7 @@ public class CryptUtil {
 		String decryptedString = null;
 		try {
 			cipher.init(Cipher.DECRYPT_MODE, secretKey, iv);
-			byte[] contentByte = Base64.getDecoder().decode(content); // まず暗号化された内容をBase64の形に変更する
+			byte[] contentByte = Base64.getDecoder().decode(content); // 先将加密的内容格式化成Base64的格式
 			byte[] decrypted = cipher.doFinal(contentByte);
 			decryptedString = new String(decrypted);
 		} catch (InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException

@@ -97,6 +97,19 @@ public class TimeUtils {
 		}
 		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
 	}
+	
+	/**
+	 * 将时间转化为"yyyyMMddHHmmss"格式的字符串，例：20080808080808
+	 * 
+	 * @param date
+	 * @return 如果传入的date为null则返回null
+	 */
+	public static String getSimpleString(Date date) {
+		if (null == date) {
+			return null;
+		}
+		return new SimpleDateFormat("yyyyMMddHHmmss").format(date);
+	}
 
 	/**
 	 * 将形如"yyyy-MM-dd HH:mm:ss"格式的字符串转化为Date
