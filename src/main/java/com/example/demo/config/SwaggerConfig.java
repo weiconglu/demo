@@ -25,6 +25,9 @@ public class SwaggerConfig {
 		
 		// 如果是开发环境就启用swagger
 		boolean flag = environment.acceptsProfiles(Profiles.of("dev"));
+		if (flag) {
+			System.err.println("当前处在开发环境，启用Swagger");
+		}
 		
 		Contact contact = new Contact("lu_weicong", "https://github.com/weiconglu", "lu_weicong@purvar.co.jp");
 		ApiInfo apiInfo = new ApiInfo("Title: springboot demo 的文档", "Description: springboot demo 的文档", "v1.0",
