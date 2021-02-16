@@ -26,16 +26,3 @@ CREATE TABLE IF NOT EXISTS tb_t_attendance_data (
     siteName VARCHAR(20) DEFAULT NULL COMMENT '',
     floorName VARCHAR(20) DEFAULT NULL COMMENT ''
 )  ENGINE=INNODB DEFAULT CHARSET=UTF8MB4 COMMENT='csv data';
-
-CREATE TABLE IF NOT EXISTS tb_t_employee (
-    id INT(11) PRIMARY KEY AUTO_INCREMENT,
-    last_name VARCHAR(50),
-    email VARCHAR(50),
-    gender CHAR(1),
-    age INT
-)  ENGINE=INNODB DEFAULT CHARSET=UTF8MB4 COMMENT='employee';
-
-INSERT INTO tb_t_employee(last_name,email,gender,age) VALUES('Tom','tom@atguigu.com',1,22);
-INSERT INTO tb_t_employee(last_name,email,gender,age) VALUES('Jerry','jerry@atguigu.com',0,25);
-INSERT INTO tb_t_employee(last_name,email,gender,age) VALUES('Black','black@atguigu.com',1,30);
-INSERT INTO tb_t_employee(last_name,email,gender,age) VALUES('White','white@atguigu.com',0,35)
